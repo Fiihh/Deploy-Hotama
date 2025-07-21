@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth md:scroll-auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotama - Building smarter solutions for a better future</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'teal-custom': '#1dd1a1',
+                        'dark-bg': '#0f1419',
+                        'dark-card': '#1a2332',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    backdropBlur: {
+                        'xs': '2px',
+                    },
+                    animation: {
+                        'scroll': 'scroll 50s linear infinite',
+                    },
+                    keyframes: {
+                        'scroll': {
+                            from: { transform: 'translateX(0)' },
+                            to: { transform: 'translateX(-100%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      .glassmorphism {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 9999px; /* rounded-full */
+            margin: 1rem auto;
+            max-width: fit-content;
+            padding: 0.75rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
+        }
+        .card-gradient {
+            background: linear-gradient(135deg, #1a2332 0%, #0f1419 100%);
+        }
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(29, 209, 161, 0.1);
+        }
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+        .typing-animation {
+            border-right: 2px solid #1dd1a1;
+            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+        }
+        
+        /* Improved Logo Scroll Animation */
+        .logo-scroll-container {
+            overflow: hidden;
+            position: relative;
+            width: 75%;
+            mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+        }
+        
+        .logo-scroll-track {
+            display: flex;
+            animation: scroll 100s linear infinite;
+            width: calc(200%);
+        }
+
+        
+        .logo-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 25%;
+            flex-shrink: 0;
+        }
+        
+        .logo-item {
+            width: 80px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+            filter: grayscale(100%);
+        }
+        
+        .logo-item:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+        
+        .logo-item img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: #1dd1a1 }
+        }
+
+          .marquee {
+      display: flex;
+      block-size: var(--marquee-item-height);
+      margin-block: var(--marquee-item-height);
+      position: relative;
+      overflow-x: hidden;
+      mask-image: linear-gradient(
+        to right,
+        hsl(0 0% 0% / 0),
+        hsl(0 0% 0% / 1) 50%,
+        hsl(0 0% 0% / 1) 25%,
+        hsl(0 0% 0% / 0)
+      );
+    }
+
+    .marquee--8 {
+      --marquee-item-width: 150px;
+      --marquee-item-height: 100px;
+      --marquee-duration: 36s;
+      --marquee-items: 8;
+    }
+
+    .marquee__item {
+      --marquee-item-offset: max(
+        calc(var(--marquee-item-width) * var(--marquee-items)),
+        calc(100% + var(--marquee-item-width))
+      );
+      --marquee-delay: calc(var(--marquee-duration) / var(--marquee-items) * (var(--marquee-items) - var(--marquee-item-index)) * -1);
+      position: absolute;
+      inset-inline-start: var(--marquee-item-offset);
+      transform: translateX(-50%);
+      animation: go linear var(--marquee-duration) var(--marquee-delay, 0s) infinite;
+    }
+
+    .marquee__item:nth-child(4n) {
+      border-top-right-radius: 1rem;
+    }
+
+    .marquee__item:nth-child(4n + 1) {
+      border-bottom-right-radius: 1rem;
+    }
+
+    .marquee__item:nth-child(4n + 2) {
+      border-bottom-left-radius: 1rem;
+    }
+
+    .marquee__item:nth-child(4n + 3) {
+      border-top-left-radius: 1rem;
+    }
+
+    /* Indexing each item */
+    .marquee--8 .marquee__item:nth-of-type(1) { --marquee-item-index: 1; }
+    .marquee--8 .marquee__item:nth-of-type(2) { --marquee-item-index: 2; }
+    .marquee--8 .marquee__item:nth-of-type(3) { --marquee-item-index: 3; }
+    .marquee--8 .marquee__item:nth-of-type(4) { --marquee-item-index: 4; }
+    .marquee--8 .marquee__item:nth-of-type(5) { --marquee-item-index: 5; }
+    .marquee--8 .marquee__item:nth-of-type(6) { --marquee-item-index: 6; }
+    .marquee--8 .marquee__item:nth-of-type(7) { --marquee-item-index: 7; }
+    .marquee--8 .marquee__item:nth-of-type(8) { --marquee-item-index: 8; }
+
+    @keyframes go {
+      to {
+        inset-inline-start: calc(var(--marquee-item-width) * -1);
+      }
+    }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-slate-900 to-black text-white font-inter scroll-smooth">
+    <!-- Navigation -->
+   <nav class="fixed top-1 left-1/2 transform -translate-x-1/2 z-50 glassmorphism">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-10">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="rounded-lg flex items-center justify-center mr-3">
+                            <img src="https://framerusercontent.com/images/cvn0qqe0jS1wja3wxuEqhNmDDJ8.png?scale-down-to=512" alt="hotama" class="w-15 h-7"/>
+                        </div>
+                    </div>  
+                </div>  
+                <div class="hidden md:block">
+            <div class="ml-60 flex items-center space-x-6">
+                        <a href="#services" class="text-gray-300 hover:text-teal-custom px-3 py-2 text-s font-medium transition-colors whitespace-nowrap">Our Services</a>
+                        <a href="#about" class="text-gray-300 hover:text-teal-custom px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap">About Us</a>
+                        <a href="#work" class="text-gray-300 hover:text-teal-custom px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap">Project</a>
+                        <a href="#testi" class="text-gray-300 hover:text-teal-custom px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap">Testimoni</a>
+                         <button class="ml-auto bg-white text-black px-9 py-2 rounded-full font-bold whitespace-nowrap">Let’s Talk</button>
+            </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none focus:text-white">
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-teal-custom/5 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8">Transform Your Digital Presence</h2>
+            <p class="text-xl text-gray-300 mb-12 max-w-4xl mx-auto">
+                We help ambitious brands grow and scale through world-class design,
+                smart marketing strategies, and cutting-edge technology—tailored to
+                make real impact.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-white text-dark-bg px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                    Let's Talk
+                </button>
+                <button class="border border-gray-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors">
+                    View Our Work
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="py-1 bg-dark-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <!-- Trusted By Section with Fixed Infinite Logo Scroll -->
+            <div class="mt-16">
+                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-teal-400 text-teal-400 bg-teal-400/10">
+             <span class="w-3 h-3 bg-teal-400 rounded-full"></span>
+                <span class="font-medium">Trusted By</span>
+                </div>
+                <div class="marquee marquee--8 relative mt-12 mb-8">
+    <img class="marquee__item h-[45px] w-[130px]" src="https://framerusercontent.com/images/zgSvzp8Ol6V6oc4CqJoLWu2I.png?scale-down-to=512" alt="lippo">
+    <img class="marquee__item h-[45px] w-[130px]" src="https://framerusercontent.com/images/d4v2Q1oJnD0sFwwjiZ0b8FgwBoo.png?scale-down-to=512"  alt="smart">
+    <img class="marquee__item h-[52px] w-[80px]" src="https://framerusercontent.com/images/n3i1xqTAiDLNSV51lOfhd07bmE.png?scale-down-to=512"  alt="flip">
+    <img class="marquee__item h-[45px] w-[130px]" src="https://framerusercontent.com/images/XZf7BlFBY69MWTeKsKWGKP8LUc.png?scale-down-to=512"  alt="pegasus">
+    <img class="marquee__item h-[45px] w-[130px]" src="https://framerusercontent.com/images/zgSvzp8Ol6V6oc4CqJoLWu2I.png?scale-down-to=512" alt="lippo">
+    <img class="marquee__item h-[45px] w-[130px]" src="https://framerusercontent.com/images/d4v2Q1oJnD0sFwwjiZ0b8FgwBoo.png?scale-down-to=512"  alt="smart">
+    <img class="marquee__item h-[52px] w-[80px]" src="https://framerusercontent.com/images/n3i1xqTAiDLNSV51lOfhd07bmE.png?scale-down-to=512"  alt="flip">
+    <img class="marquee__item h-[45px] w-[130px]" src="https://framerusercontent.com/images/XZf7BlFBY69MWTeKsKWGKP8LUc.png?scale-down-to=512"  alt="pegasus">
+  </div>    
+      </div>
+        </div>
+    </section>
+
+    <!-- Our Work Section -->
+    <section id="work" class="py-20 bg-dark-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+            <div class="text-center mb-16">
+                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-teal-400 text-teal-400 bg-teal-400/10">
+             <span class="w-3 h-3 bg-teal-400 rounded-full"></span>
+                <span class="font-medium">Our Work</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-8">Our Previous Project</h2>
+            </div>
+            <div class="flex justify-center ">
+                <div class="card-gradient rounded-3xl p-8 max-w-md ">
+                    <img src="https://framerusercontent.com/images/LCVsDCZG7TxEIg3DCqODtWRG0.png" alt="pegasus" class=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-center">Qara'a</h3>
+                    <p class="text-gray-400 text-center mb-20">Education App</p>
+                </div>
+                 <div class="flex justify-center ">
+                <div class="card-gradient rounded-3xl p-8 max-w-md ">
+                    <img src="https://framerusercontent.com/images/5wgXVrTb40sZ33YJlRdso0WBKMU.png" alt="pegasus" class=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-center">Pegassus Universe</h3>
+                    <p class="text-gray-400 text-center">HR Management App</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Services Section -->
+    <section id="services" class="py-20 bg-dark-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-teal-400 text-teal-400 bg-teal-400/10">
+             <span class="w-3 h-3 bg-teal-400 rounded-full"></span>
+                <span class="font-medium">Our Service</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-8">Solution for your business needs</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="service-card card-gradient rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-teal-custom rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Website & Desktop App</h3>
+                    <p class="text-gray-400">
+                        We blend aesthetics with functionality, ensuring a seamless user experience that leaves a lasting impression.
+                    </p>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="service-card card-gradient rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-teal-custom rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Mobile Application</h3>
+                    <p class="text-gray-400">
+                        Step into the mobile realm with our cutting-edge Android and iOS development.
+                    </p>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="service-card card-gradient rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-teal-custom rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a1 1 0 102 0V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 2a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Digital Content</h3>
+                    <p class="text-gray-400">
+                        From compelling copy to captivating visuals, we create digital content that resonates with your audience.
+                    </p>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="service-card card-gradient rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-teal-custom rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">SEO Services</h3>
+                    <p class="text-gray-400">
+                        Harness the power of SEO to propel your business to the forefront of search engine results.
+                    </p>
+                </div>
+
+                <!-- Service Card 5 -->
+                <div class="service-card card-gradient rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-teal-custom rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Consulting</h3>
+                    <p class="text-gray-400">
+                        Navigate the complexities of the digital landscape with our expert consulting services.
+                    </p>
+                </div>
+
+                <!-- Service Card 6 -->
+                <div class="service-card card-gradient rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-teal-custom rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Digital Strategist</h3>
+                    <p class="text-gray-400">
+                        Pioneering innovation, we guide you towards a future where your digital presence is synonymous with success.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-dark-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"><div class="order-1 lg:order-1">
+                    <div class="max-w-fit bg-gradient-to-br from-teal-custom/20 to-purple-600/20 rounded-2xl p-8 backdrop-blur-sm"> 
+                    <img src="https://framerusercontent.com/images/kS0nBwB7pKnWC3vlQzLBRwPVKYA.jpg?scale-down-to=512" alt="pegasus" class="max-w-fit"/>
+               
+                </div>
+                  </div><div class="order-2 lg:order-2">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-teal-400 text-teal-400 bg-teal-400/10">
+             <span class="w-3 h-3 bg-teal-400 rounded-full"></span>
+                <span class="font-medium">About Us</span>
+                </div>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-8">Learn more about our journey</h2>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        PT Kreasi Putra Hotama is a reputable software development and IT consulting company with over 10 years of experience. We pride ourselves on being a trusted partner for businesses seeking innovative technology solutions. With a team of skilled professionals, we have successfully delivered numerous software projects and provided exceptional IT consulting services to clients across various industries.
+                    </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+   <section id="testi" class="py-20 bg-dark-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-teal-custom text-sm font-semibold">Testimoni</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-8">What client say about our service</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card-gradient rounded-2xl p-8">
+                    <p class="text-gray-300 mb-6">
+                        "Pretty handy sites powered by Craft CMS in the past, but seeing @framer makes stuff so effortlessly is mind-blowing."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-600 rounded-full mr-4"></div>
+                        <div>
+                            <h4 class="font-semibold">Daniel</h4>
+                            <p class="text-gray-400 text-sm">@dxwinden</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-gradient rounded-2xl p-8">
+                    <p class="text-gray-300 mb-6">
+                        "The scroll variant in @framer hits differently. Never imagined that making some complex things would be easy with that. Everyday I learn something new with Framer."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gray-600 rounded-full mr-4 overflow-hidden">
+                            <div class="w-full h-full bg-gradient-to-br from-teal-custom to-purple-600"></div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Mani</h4>
+                            <p class="text-gray-400 text-sm">@BeingMani97</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-card py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <div class="w-40 h-30  rounded-lg flex items-center justify-center mr-3">
+                        <svg class=" text-white" fill="currentColor" viewBox="0 0 20 20">
+                             <img src="https://framerusercontent.com/images/cvn0qqe0jS1wja3wxuEqhNmDDJ8.png?scale-down-to=512" class="size-00"
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex space-x-6 text-sm text-gray-400">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Contact</a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+                <p>&copy; 2024 Hotama. All rights reserved. Made in Framer</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('backdrop-blur-xl');
+            } else {
+                navbar.classList.remove('backdrop-blur-xl');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
