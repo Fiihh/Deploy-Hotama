@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotama</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+     <link rel="icon" type="image/svg+xml" href="./img/icon.svg" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                           'teal-custom': '#1dd1a1',
+                        'lawut': '#067079',
+                        'dark-bg': '#081013',
+                        'dark-card': '#1a2332',
+                        'lawut-dark': '#013a3d',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter'],
+                        'sans':['sans-serif'],  
+                          'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    backdropBlur: {
+                        'xs': '2px',
+                    },
+                    animation: {
+                        'scroll': 'scroll 20s linear infinite',
+                    },
+                    keyframes: {
+                        'scroll': {
+                            from: { transform: 'translateX(0)' },
+                            to: { transform: 'translateX(-100%)' },
+                        }
+                    }
+                }
+            } 
+        }
+        
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      .glassmorphism {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: linear-gradient(135deg, rgba(255, 255, 255), rgba(255,255,255));
+            border-radius: 9999px; /* rounded-full */
+            margin: 1rem auto;
+            max-width: fit-content;
+            padding: 0.75rem 2rem;
+            
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
+        }
+        .card-gradient {
+            background: linear-gradient(135deg, #1a2332 0%, #0f1419 100%);
+        }
+  .service-card {
+    transition: transform 0.6s ease-out, box-shadow 0.4s ease-out; /* 0.6s biar pelan */
+  width: 100%;
+  max-width: 100%;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.service-card.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.service-card:hover {
+  /* Hanya ubah bayangan atau border, tanpa scale */
+  box-shadow: 0 20px 40px rgba(29, 209, 161, 0.1);
+}
+
+
+        .service-card img {
+    width: 72px;
+    height: auto;
+      transition: transform 0.6s ease-out, color 0.6s ease-out, opacity 0.6s ease-out;
+
+}
+
+.service-card h3 {
+    font-size: 1.31rem; /* lebih kecil */
+      transition: transform 0.6s ease-out, color 0.6s ease-out, opacity 0.6s ease-out;
+
+}
+
+.service-card p {
+    font-size: 1.02rem; /* lebih kecil */
+      transition: transform 0.6s ease-out, color 0.6s ease-out, opacity 0.6s ease-out;
+
+}
+#mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease, padding 0.3s ease, opacity 0.3s ease;
+}
+
+#mobile-menu.show {
+  max-height: 240px;  /* atau sesuai tinggi menu */
+  padding-top: 2.5rem;  /* sesuai px-8 py-10 */
+  padding-bottom: 2.5rem;
+  opacity: 1;
+}
+
+
+
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+        .typing-animation {
+            border-right: 2px solid #1dd1a1;
+            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+        }
+        
+        /* Improved Logo Scroll Animation */
+        .logo-scroll-container {
+            overflow: hidden;
+            position: relative;
+            width: 75%;
+            mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+        }
+        
+        .logo-scroll-track {
+            display: flex;
+            animation: scroll 100s linear infinite;
+            width: calc(200%);
+        }
+
+        
+        .logo-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 25%;
+            flex-shrink: 0;
+        }
+        
+        .logo-item {
+            width: 80px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+            filter: grayscale(100%);
+        }
+        
+        .logo-item:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+        
+        .logo-item img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: #1dd1a1 }
+        }
+
+          .marquee {
+      display: flex;
+      block-size: var(--marquee-item-height);
+      margin-block: var(--marquee-item-height);
+      position: relative;
+      overflow-x: hidden;
+      mask-image: linear-gradient(
+        to right,
+        hsl(0 0% 0% / 0),
+        hsl(0 0% 0% / 1) 50%,
+        hsl(0 0% 0% / 1) 25%,
+        hsl(0 0% 0% / 0)
+      );
+    }
+
+    .marquee--8 {
+      --marquee-item-width: 150px;
+      --marquee-item-height: 100px;
+      --marquee-duration: 36s;
+      --marquee-items: 8;
+    }
+
+    .marquee__item {
+      --marquee-item-offset: max(
+        calc(var(--marquee-item-width) * var(--marquee-items)),
+        calc(100% + var(--marquee-item-width))
+      );
+      --marquee-delay: calc(var(--marquee-duration) / var(--marquee-items) * (var(--marquee-items) - var(--marquee-item-index)) * -1);
+      position: absolute;
+      inset-inline-start: var(--marquee-item-offset);
+      transform: translateX(-50%);
+      animation: go linear var(--marquee-duration) var(--marquee-delay, 0s) infinite;
+    }
+
+    .marquee__item:nth-child(4n) {
+      border-top-right-radius: 1rem;
+    }
+
+    .marquee__item:nth-child(4n + 1) {
+      border-bottom-right-radius: 1rem;
+    }
+
+    .marquee__item:nth-child(4n + 2) {
+      border-bottom-left-radius: 1rem;
+    }
+
+    .marquee__item:nth-child(4n + 3) {
+      border-top-left-radius: 1rem;
+    }
+
+    .marquee--8 .marquee__item:nth-of-type(1) { --marquee-item-index: 1; }
+    .marquee--8 .marquee__item:nth-of-type(2) { --marquee-item-index: 2; }
+    .marquee--8 .marquee__item:nth-of-type(3) { --marquee-item-index: 3; }
+    .marquee--8 .marquee__item:nth-of-type(4) { --marquee-item-index: 4; }
+    .marquee--8 .marquee__item:nth-of-type(5) { --marquee-item-index: 5; }
+    .marquee--8 .marquee__item:nth-of-type(6) { --marquee-item-index: 6; }
+    .marquee--8 .marquee__item:nth-of-type(7) { --marquee-item-index: 7; }
+    .marquee--8 .marquee__item:nth-of-type(8) { --marquee-item-index: 8; }
+
+    @keyframes go {
+      to {
+        inset-inline-start: calc(var(--marquee-item-width) * -1);
+      }
+    }
+    
+.fade-slide {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .fade-slide.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-slide.hide {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+    
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: all 0.6s ease-out;
+  }
+
+  .scroll-reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .about-us-img {
+  overflow: hidden; /* biar gambar tidak keluar frame */
+  border-radius: 1rem; /* sama seperti card lainnya */
+}
+
+.about-us-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s ease-out;
+}
+
+.about-us-img:hover img {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  #navbar {
+    max-width: 370px; /* sesuaikan dengan gambar */
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  
+  }
+}
+@keyframes slideUpFade {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up-fade {
+  animation: slideUpFade 0.6s ease-out forwards;
+}
+
+
+
+
+    </style>
+</head>
+<body class="bg-gradient-to-b from-slate-900 to-black text-white font-inter scroll-smooth">
+ <!-- Navigation -->
+<nav id="navbar"
+  class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl px-3 sm:px-5 h-18 py-3 bg-black/20 backdrop-blur-lg rounded-[32px] border border-white/20 shadow-md 
+         opacity-0 -translate-y-20 transition-all duration-700 ease-out ">
+
+    <div class="relative flex items-center justify-between">
+
+    <!-- Logo (kiri) -->
+    <div class="flex items-center space-x-2">
+      <img src="https://framerusercontent.com/images/cvn0qqe0jS1wja3wxuEqhNmDDJ8.png?scale-down-to=512"
+        alt="hotama" class="w-[120px] h-auto ml-3" />
+    </div>
+
+    <!-- Desktop Menu (tengah) -->
+    <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center space-x-10 text-sm font-medium text-white ">
+      <a href="#services" class="hover:text-teal-400 transition nav-link ">Our Services</a>
+      <a href="#about" class="hover:text-teal-400 transition">About Us</a>
+      <a href="#work" class="hover:text-teal-400 transition">Project</a>
+      <a href="#testi" class="hover:text-teal-400 transition">Testimoni</a>
+    </div>
+
+    <!-- Button (kanan) -->
+    <div class="hidden md:flex items-center">
+      <a href="https://www.linkedin.com/uas/login?session_redirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fputrahotama%2Fposts%2F%3FfeedView%3Dall"
+        class="ml-4 bg-white text-black px-6 py-2 rounded-full hover:bg-blue-400 hover:text-white transition-colors">
+        Let's Talk
+      </a>
+    </div>
+
+    <!-- Mobile Hamburger -->
+    <div class="md:hidden flex items-center space-x-2">
+      <button id="mobile-menu-btn" class="text-white hover:text-teal-400 focus:outline-none">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Dropdown -->
+<div id="mobile-menu"
+ class="md:hidden w-full max-w-2xl px-8 py-10 text-white opacity-0 pointer-events-none transition-all duration-500 ease-out" >   
+ <div class="flex flex-col gap-6 text-lg font-semibold">
+      <a href="#services" class="hover:text-teal-400 transition">Our Services</a>
+      <a href="#about" class="hover:text-teal-400 transition">About Us</a>
+      <a href="#work" class="hover:text-teal-400 transition">Project</a>
+      <a href="#testi" class="hover:text-teal-400 transition">Testimoni</a>
+    </div>
+  </div>
+</nav>
+
+ 
+    <!-- Hero Section -->
+<section id="home" class="hero-gradient min-h-[80vh] flex items-center justify-center px-6 py-20 sm:py-28 md:py-36 lg:py-40 relative overflow-hidden">
+
+        <div class="absolute inset-0 bg-gradient-to-b from-lawut via-lawut-dark to-dark-bg"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+         <h2 class="text-6xl font-semibold font-inter mb-2 bg-gradient-to-b from-white to-lawut via-white text-transparent bg-clip-text box-border size-50 border-1 p-2 scroll-reveal">Transform Your Digital Presence</h2>
+            <p class="text-2xl text-gray-500 md:text-xl mb-10 font-inter max-w-4xl scroll-reveal">
+                 We help ambitious brands grow and scale through world-class design,
+                smart marketing strategies, and cutting-edge technology—tailored to
+                make real impact.
+            </p>
+          <div class="flex flex-wrap gap-4 justify-center items-center scroll-reveal">
+  <a href="https://www.linkedin.com/...">
+    <button class="bg-white text-dark-bg px-6 py-2.5 text-sm sm:text-base rounded-full font-medium 
+      hover:bg-blue-400 hover:text-white transition-colors shadow-sm">
+      Let's Talk
+    </button>
+  </a>
+  <a href="#work"
+     class="inline-block px-6 py-2.5 text-sm sm:text-base rounded-full font-medium 
+     bg-white/30 text-white border border-white/20
+     hover:bg-white/40 hover:text-white
+     active:bg-white active:text-white
+     transition-colors duration-300 backdrop-blur-sm shadow-sm">
+    View Our Work
+  </a>
+</div>
+
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="py-1 bg-dark-bg">
+      
+        <div class="w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <!-- Trusted By Section with Fixed Infinite Logo Scroll -->
+            <div class="mt-1">
+                 <div class="inline-flex items-center gap-2 px-4 py-2">
+             <span class="bg-teal-400"></span>
+                <span class="font-medium">Trusted By</span>
+                </div>
+                <div class="marquee marquee--8 relative mt-12 mb-8">
+                  
+    <img class="marquee__item h-[45px] w-[130px]" src="https://framerusercontent.com/images/zgSvzp8Ol6V6oc4CqJoLWu2I.png?scale-down-to=512" alt="lippo">
+    <img class="marquee__item h-[45px] w-[130px]" src="https://framerusercontent.com/images/d4v2Q1oJnD0sFwwjiZ0b8FgwBoo.png?scale-down-to=512"  alt="smart">
+    <img class="marquee__item h-[52px] w-[80px]" src="https://framerusercontent.com/images/n3i1xqTAiDLNSV51lOfhd07bmE.png?scale-down-to=512"  alt="flip">
+    <img class="marquee__item h-[45px] w-[130px]" src="https://framerusercontent.com/images/XZf7BlFBY69MWTeKsKWGKP8LUc.png?scale-down-to=512"  alt="pegasus">
+    <img class="marquee__item h-[45px] w-[130px]" src="https://framerusercontent.com/images/zgSvzp8Ol6V6oc4CqJoLWu2I.png?scale-down-to=512" alt="lippo">
+    <img class="marquee__item h-[45px] w-[130px]" src="https://framerusercontent.com/images/d4v2Q1oJnD0sFwwjiZ0b8FgwBoo.png?scale-down-to=512"  alt="smart">
+    <img class="marquee__item h-[52px] w-[80px]" src="https://framerusercontent.com/images/n3i1xqTAiDLNSV51lOfhd07bmE.png?scale-down-to=512"  alt="flip">
+    <img class="marquee__item h-[45px] w-[130px]" src="https://framerusercontent.com/images/XZf7BlFBY69MWTeKsKWGKP8LUc.png?scale-down-to=512"  alt="pegasus">
+  </div>    
+      </div>
+        </div>
+    </section>
+
+
+   <!-- Services Section -->
+    <section id="services" class="py-20  bg-dark-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                 <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-teal-500 text-teal-400 bg-teal-500/10 w-max mx-auto mb-4 scroll-reveal">
+      <span class="w-2.5 h-2.5 bg-teal-400 rounded-full "></span>
+      <span class="text-sm font-medium">Our Services</span>
+    </div>
+                <h2 class="text-5xl font-semibold font-inter mb-2 bg-gradient-to-b from-white to-lawut via-white text-transparent bg-clip-text box-border size-50 border-1 p-2 scroll-reveal scroll-reveal">Solution for your business needs</h2>
+            </div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-2 sm:px-8 lg:px-20">
+                  <!-- Service Card 1 -->
+<div class="service-card rounded-xl p-8 text-left bg-[#0d1e22] border border-white/10 hover:border-teal-400 transition-colors ">
+      <div class="mb-8">
+          <img src="https://framerusercontent.com/images/Hs3vGn1lKBRtuffySk1J6ICPHg.svg" alt="Service Icon" class="w-[60px] h-[60px]">
+      </div>
+      <h3 class="text-lg font-semibold mb-3">Website & Desktop App</h3>
+      <p class="text-sm text-gray-400 leading-relaxed">
+          We blend aesthetics with functionality, ensuring a seamless user experience.
+      </p>
+  </div>
+ <!-- Service Card 2 -->
+<div class="service-card rounded-xl p-8 text-left bg-[#0d1e22] border border-white/10 hover:border-teal-400 transition-colors">
+      <div class="mb-8">
+          <img src="https://framerusercontent.com/images/IBCr2pKK7NNfRaaE09O8W2KQc.svg" alt="Service Icon" class="w-[60px] h-[60px]">
+      </div>
+      <h3 class="text-lg font-semibold mb-3">Mobile Application</h3>
+      <p class="text-sm text-gray-400 leading-relaxed">
+         Step into the mobile realm with our cutting-edge Android and iOS development.
+      </p>
+  </div>
+             <!-- Service Card 3 -->
+<div class="service-card rounded-xl p-8 text-left bg-[#0d1e22] border border-white/10 hover:border-teal-400 transition-colors">
+      <div class="mb-8">
+          <img src="https://framerusercontent.com/images/3SWLuSYSIPtmIgmKJOPOh6YE.svg" alt="Service Icon" class="w-[60px] h-[60px]">
+      </div>
+      <h3 class="text-lg font-semibold mb-3">Digital Content</h3>
+      <p class="text-sm text-gray-400 leading-relaxed">
+ From compelling copy to captivating visuals, we create digital content that resonates with your audience.
+      </p>
+  </div>
+                               <!-- Service Card 4 -->
+        <div class="service-card rounded-xl p-8 text-left bg-[#0d1e22] border border-white/10 hover:border-teal-400 transition-colors">
+      <div class="mb-8">
+          <img src="https://framerusercontent.com/images/M0mqWWffbKlVGfK78rGgORzBU.svg" alt="Service Icon" class="w-[60px] h-[60px]">
+      </div>
+      <h3 class="text-lg font-semibold mb-3">SEO Services</h3>
+      <p class="text-sm text-gray-400 leading-relaxed">
+ Harness the power of SEO to propel your business to the forefront of search engine results.      </p>
+  </div>
+
+ <!-- Service Card 5 -->
+  <div class="service-card rounded-xl p-8 text-left bg-[#0d1e22] border border-white/10 hover:border-teal-400 transition-colors">
+      <div class="mb-8">
+          <img src="https://framerusercontent.com/images/mLRtSvf64crJscHb8ygILV2vkg.svg" alt="Service Icon" class="w-[60px] h-[60px]">
+      </div>
+      <h3 class="text-lg font-semibold mb-3">Consulting</h3>
+      <p class="text-sm text-gray-400 leading-relaxed">
+                        Navigate the complexities of the digital landscape with our expert consulting services.
+     </p>
+  </div>
+
+               
+                           <!-- Service Card 6 -->
+  <div class="service-card rounded-xl p-8 text-left bg-[#0d1e22] border border-white/10 hover:border-teal-400 transition-colors">
+      <div class="mb-8">
+          <img src="https://framerusercontent.com/images/AjK8RLnT2jVkKE5uKIpgGHLfh4Q.svg" alt="Service Icon" class="w-[60px] h-[60px]">
+      </div>
+      <h3 class="text-lg font-semibold mb-3">Digital Strategist</h3>
+      <p class="text-sm text-gray-400 leading-relaxed">
+                        Pioneering innovation, we guide you towards a future where your digital presence is synonymous with success.
+     </p>
+  </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-dark-bg  ">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " >
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center text-center lg:text-left">
+                <div class="order-1 lg:order-1">
+                    <div class=" about-us-img rounded-2xl p-3 backdrop-blur-sm scroll-reveal mx-auto sm:w-auto w-full "> 
+                    <img class="rounded-2xl " src="https://framerusercontent.com/images/kS0nBwB7pKnWC3vlQzLBRwPVKYA.jpg?scale-down-to=512" alt="pegasus" class="max-w-fit"/>
+               
+                </div>
+                  </div>
+                  <div class="order-2 lg:order-2 ">
+                    <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-teal-500 text-teal-400 bg-teal-500/10 w-max mx-auto mb-4 scroll-reveal">
+      <span class="w-2.5 h-2.5 bg-teal-400 rounded-full"></span>
+      <span class="text-sm font-medium">About Us</span>
+    </div>
+                    <h2 class="text-[39px] font-semibold font-inter mb-2 bg-gradient-to-b from-white to-lawut via-white text-transparent bg-clip-text box-border size-50 border-1 p-2 scroll-reveal">Learn more about our journey</h2>
+                    <p class="text-gray-300 text-lg leading-relaxed scroll-reveal">
+                        PT Kreasi Putra Hotama is a reputable software development and IT consulting company with over 10 years of experience. We pride ourselves on being a trusted partner for businesses seeking innovative technology solutions. With a team of skilled professionals, we have successfully delivered numerous software projects and provided exceptional IT consulting services to clients across various industries.
+                    </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section id="work" class="py-20 bg-dark-bg scroll-mt-32 md:scroll-mt-40">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="">
+        <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-teal-500 text-teal-400 bg-teal-500/10 w-max mx-auto mb-4 scroll-reveal">
+          <span class="w-2.5 h-2.5 bg-teal-400 rounded-full"></span>
+          <span class="text-sm font-medium">Our Work</span>
+        </div>
+        <h2 class="text-5xl font-semibold font-inter mb-2 bg-gradient-to-b from-white to-lawut via-white text-transparent bg-clip-text box-border size-50 border-1 p-2 mb-[40px] scroll-reveal">Our Previous Projects</h2>
+      </div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-20">
+<!-- Project 1 -->
+<a href="qaraa.html" class="project-card group scroll-reveal relative block">
+  <div class="card-gradient rounded-2xl overflow-hidden relative">
+    <div class="relative overflow-hidden">
+      <img src="https://framerusercontent.com/images/LCVsDCZG7TxEIg3DCqODtWRG0.png" 
+           alt="Project" 
+           class="w-full h-[220px] object-cover transition-transform duration-500 group-hover:scale-105">
+      
+      <!-- Overlay hanya untuk desktop -->
+      <div class="absolute inset-0 bg-purple-600/60 hidden md:flex items-center justify-center 
+                  opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+        
+        <!-- Teks + Panah -->
+        <span class="flex items-center gap-2 text-white font-poppins font-medium text-lg 
+                     transform -translate-x-20 translate-y-1 opacity-0
+                     transition-all duration-500 ease-out
+                     group-hover:translate-x-0 group-hover:translate-y-1 group-hover:opacity-100">
+          View More
+          <svg xmlns="http://www.w3.org/2000/svg" 
+               class="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1" 
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M9 5l7 7-7 7" />
+          </svg>
+        </span>
+      </div>
+
+      <!-- View More untuk mobile -->
+<div class="absolute bottom-3 right-3 md:hidden opacity-0 scroll-reveal">
+  <span class="flex items-center gap-1 bg-purple-600/60 text-white font-poppins text-sm px-3 py-1 rounded-2xl">
+    View More
+    <svg xmlns="http://www.w3.org/2000/svg" 
+         class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+            d="M9 5l7 7-7 7" />
+    </svg>
+  </span>
+</div>
+
+    </div>
+
+    <div class="p-8">
+      <h3 class="text-2xl font-bold mb-2">Qara'a</h3>
+      <p class="text-gray-400">Education App</p>
+    </div>
+  </div>
+</a>
+
+
+
+<!-- Project 2 -->
+<a href="#" class="project-card group scroll-reveal relative block">
+  <div class="card-gradient rounded-2xl overflow-hidden relative">
+    <div class="relative overflow-hidden">
+      <img src="https://framerusercontent.com/images/5wgXVrTb40sZ33YJlRdso0WBKMU.png" 
+           alt="Project" 
+           class="w-full h-[220px] object-cover transition-transform duration-500 group-hover:scale-105">
+      
+      <!-- Overlay hanya untuk desktop -->
+      <div class="absolute inset-0 bg-blue-600/60 hidden md:flex items-center justify-center 
+                  opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+        
+        <!-- Teks + Panah -->
+        <span class="flex items-center gap-2 text-white font-poppins font-medium text-lg 
+                     transform -translate-x-20 translate-y-1 opacity-0
+                     transition-all duration-500 ease-out
+                     group-hover:translate-x-0 group-hover:translate-y-1 group-hover:opacity-100">
+          View More
+          <svg xmlns="http://www.w3.org/2000/svg" 
+               class="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1" 
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M9 5l7 7-7 7" />
+          </svg>
+        </span>
+      </div>
+
+      <!-- View More untuk mobile -->
+<div class="absolute bottom-3 right-3 md:hidden opacity-0 scroll-reveal">
+  <span class="flex items-center gap-1 bg-blue-600/60 text-white font-poppins text-sm px-3 py-1 rounded-2xl">
+    View More
+    <svg xmlns="http://www.w3.org/2000/svg" 
+         class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+            d="M9 5l7 7-7 7" />
+    </svg>
+  </span>
+</div>
+
+    </div>
+
+    <div class="p-8">
+      <h3 class="text-2xl font-bold mb-2">Pegasus Universe</h3>
+      <p class="text-gray-400">HR Management App</p>
+    </div>
+  </div>
+</a>
+
+
+<!-- Project 3 -->
+<a href="#" class="project-card group scroll-reveal relative block">
+  <div class="card-gradient rounded-2xl overflow-hidden relative">
+    <div class="relative overflow-hidden">
+      <img src="https://framerusercontent.com/images/0DRCVrZ9lvpUkztM0H8Mpxwtak8.png?scale-down-to=512" 
+           alt="Project" 
+           class="w-full h-[220px] object-cover transition-transform duration-500 group-hover:scale-105">
+      
+      <!-- Overlay hanya untuk desktop -->
+      <div class="absolute inset-0 bg-green-600/60 hidden md:flex items-center justify-center 
+                  opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+        
+        <!-- Teks + Panah -->
+        <span class="flex items-center gap-2 text-white font-poppins font-medium text-lg 
+                     transform -translate-x-20 translate-y-1 opacity-0
+                     transition-all duration-500 ease-out
+                     group-hover:translate-x-0 group-hover:translate-y-1 group-hover:opacity-100">
+          View More
+          <svg xmlns="http://www.w3.org/2000/svg" 
+               class="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1" 
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M9 5l7 7-7 7" />
+          </svg>
+        </span>
+      </div>
+
+      <!-- View More untuk mobile -->
+<div class="absolute bottom-3 right-3 md:hidden opacity-0 scroll-reveal">
+  <span class="flex items-center gap-1 bg-green-600/60 text-white font-poppins text-sm px-3 py-1 rounded-2xl">
+    View More
+    <svg xmlns="http://www.w3.org/2000/svg" 
+         class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+            d="M9 5l7 7-7 7" />
+    </svg>
+  </span>
+</div>
+
+    </div>
+
+    <div class="p-8">
+      <h3 class="text-2xl font-bold mb-2">Belanja Smart</h3>
+      <p class="text-gray-400">Groceries App</p>
+    </div>
+  </div>
+</a>
+
+<!-- Project 4 (Hidden) -->
+<a href="detail-maureno.html" class="project-card group project-hidden fade-slide hidden relative block">
+  <div class="card-gradient rounded-2xl overflow-hidden relative">
+    <div class="relative overflow-hidden">
+      <img src="https://media.licdn.com/dms/image/v2/D5622AQHUe1ah3QVuZw/feedshare-shrink_800/B56ZhP4M34G0Ag-/0/1753686791500?e=1757548800&v=beta&t=84FaHE75670P8CWJ0y7vGDYAG7fC-T8CgOfEEd7_mVo" 
+           alt="Project" 
+           class="w-full h-[220px] object-cover transition-transform duration-500 group-hover:scale-105">
+      
+      <!-- Overlay hanya untuk desktop -->
+      <div class="absolute inset-0 bg-amber-800/60 hidden md:flex items-center justify-center 
+                  opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+        
+        <!-- Teks + Panah -->
+        <span class="flex items-center gap-2 text-white font-poppins font-medium text-lg 
+                     transform -translate-x-20 translate-y-1 opacity-0
+                     transition-all duration-500 ease-out
+                     group-hover:translate-x-0 group-hover:translate-y-1 group-hover:opacity-100">
+          View More
+          <svg xmlns="http://www.w3.org/2000/svg" 
+               class="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1" 
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M9 5l7 7-7 7" />
+          </svg>
+        </span>
+      </div>
+
+      <!-- View More untuk mobile -->
+<div class="absolute bottom-3 right-3 md:hidden opacity-0 scroll-reveal">
+  <span class="flex items-center gap-1 bg-amber-800/60 text-white font-poppins text-sm px-3 py-1 rounded-2xl">
+    View More
+    <svg xmlns="http://www.w3.org/2000/svg" 
+         class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+            d="M9 5l7 7-7 7" />
+    </svg>
+  </span>
+</div>
+
+    </div>
+
+    <div class="p-8">
+      <h3 class="text-2xl font-bold mb-2">Maureno Website</h3>
+      <p class="text-gray-400">Groceries App</p>
+    </div>
+  </div>
+</a>
+
+
+<!-- Project 5 (Hidden) -->
+<a href="detail-maureno.html" class="project-card group project-hidden fade-slide hidden relative block">
+  <div class="card-gradient rounded-2xl overflow-hidden relative">
+    <div class="relative overflow-hidden">
+      <img src="https://media.licdn.com/dms/image/v2/D5622AQGHbtJrtEIK2w/feedshare-shrink_800/B56ZhAJr8pG4Ao-/0/1753422939945?e=1757548800&v=beta&t=e-zLlmC-pay-EH9h-2QkrvWHAfleBbHGEs4gqQUuaRg" 
+           alt="Project" 
+           class="w-full h-[220px] object-cover transition-transform duration-500 group-hover:scale-105">
+      
+      <!-- Overlay hanya untuk desktop -->
+      <div class="absolute inset-0 bg-red-600/60 hidden md:flex items-center justify-center 
+                  opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+        
+        <!-- Teks + Panah -->
+        <span class="flex items-center gap-2 text-white font-poppins font-medium text-lg 
+                     transform -translate-x-20 translate-y-1 opacity-0
+                     transition-all duration-500 ease-out
+                     group-hover:translate-x-0 group-hover:translate-y-1 group-hover:opacity-100">
+          View More
+          <svg xmlns="http://www.w3.org/2000/svg" 
+               class="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1" 
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M9 5l7 7-7 7" />
+          </svg>
+        </span>
+      </div>
+
+      <!-- View More untuk mobile -->
+<div class="absolute bottom-3 right-3 md:hidden opacity-0 scroll-reveal">
+  <span class="flex items-center gap-1 bg-red-600/60 text-white font-poppins text-sm px-3 py-1 rounded-2xl">
+    View More
+    <svg xmlns="http://www.w3.org/2000/svg" 
+         class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+            d="M9 5l7 7-7 7" />
+    </svg>
+  </span>
+</div>
+
+    </div>
+
+    <div class="p-8">
+      <h3 class="text-2xl font-bold mb-2">Hotways App</h3>
+      <p class="text-gray-400">HR Management System</p>
+    </div>
+  </div>
+</a>
+
+<!-- Project 6 (Hidden) -->
+<a href="detail-maureno.html" class="project-card group project-hidden fade-slide hidden relative block">
+  <div class="card-gradient rounded-2xl overflow-hidden relative">
+    <div class="relative overflow-hidden">
+      <img src="https://media.licdn.com/dms/image/v2/D5622AQGvTKA3KBtL5g/feedshare-shrink_800/B56Zg9SfQSHkAg-/0/1753374918119?e=1757548800&v=beta&t=qxnsAWhCrJGl9HmQOBI-US2FSTHk9esVZTyyTGK-L-0" 
+           alt="Project" 
+           class="w-full h-[220px] object-cover transition-transform duration-500 group-hover:scale-105">
+      
+      <!-- Overlay hanya untuk desktop -->
+      <div class="absolute inset-0 bg-yellow-600/60 hidden md:flex items-center justify-center 
+                  opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+        
+        <!-- Teks + Panah -->
+        <span class="flex items-center gap-2 text-white font-poppins font-medium text-lg 
+                     transform -translate-x-20 translate-y-1 opacity-0
+                     transition-all duration-500 ease-out
+                     group-hover:translate-x-0 group-hover:translate-y-1 group-hover:opacity-100">
+          View More
+          <svg xmlns="http://www.w3.org/2000/svg" 
+               class="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1" 
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M9 5l7 7-7 7" />
+          </svg>
+        </span>
+      </div>
+
+      <!-- View More untuk mobile -->
+<div class="absolute bottom-3 right-3 md:hidden opacity-0 scroll-reveal">
+  <span class="flex items-center gap-1 bg-yellow-600/60 text-white font-poppins text-sm px-3 py-1 rounded-2xl">
+    View More
+    <svg xmlns="http://www.w3.org/2000/svg" 
+         class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+            d="M9 5l7 7-7 7" />
+    </svg>
+  </span>
+</div>
+
+    </div>
+
+   <div class="p-8">
+      <h3 class="text-2xl font-bold mb-2">Flip Deals</h3>
+      <p class="text-gray-400">Digital Payment Aggregator</p>
+    </div>
+  </div>
+</a>
+
+
+      </div>
+
+      <!-- See More & See All ProjectsButtons -->
+  <div class="mt-6 scroll-reveal flex justify-center items-center gap-4">
+    <button id="toggleProjectsBtn" 
+            class="px-6 py-2 rounded-full border border-teal-500 text-teal-400 
+                  hover:bg-cyan-500 hover:text-white transition duration-300">
+      See More
+    </button>
+    
+  </div>
+
+  </div>
+</section>
+
+
+    <!-- Testimonials Section -->
+ <section class="bg-dark-bg text-white py-20 px-4 overflow-hidden relative" id="testi">
+  <div class="max-w-4xl mx-auto text-center mb-12">
+    <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-teal-500 text-teal-400 bg-teal-500/10 w-max mx-auto mb-4 scroll-reveal">
+      <span class="w-2.5 h-2.5 bg-teal-400 rounded-full"></span>
+      <span class="text-sm font-medium">Testimoni</span>
+    </div>
+    <h2 class="text-5xl font-semibold font-inter mb-2 bg-gradient-to-b from-white to-lawut via-white text-transparent bg-clip-text box-border size-50 border-1 p-2 scroll-reveal">
+      What client say about our service
+    </h2>
+  </div>
+
+ <!-- SHADOW KIRI -->
+<div class="hidden sm:block absolute left-0 
+  h-[300px] 
+  w-[200px] md:w-[300px] lg:w-[400px] 
+  bg-gradient-to-r from-dark-bg via-dark-bg/90 to-transparent 
+  z-10 pointer-events-none">
+</div>
+
+<!-- SHADOW KANAN -->
+<div class="hidden sm:block absolute right-0 
+  h-[300px] 
+  w-[200px] md:w-[300px] lg:w-[400px] 
+  bg-gradient-to-l from-dark-bg via-dark-bg/90 to-transparent 
+  z-10 pointer-events-none">
+</div>
+
+
+  <div class="relative overflow-hidden">
+    <div class="flex gap-6 w-max animate-slide px-4 scroll-reveal">
+
+      <!-- Testimoni akan digandakan melalui JavaScript -->
+      
+      <template id="testimonial">
+        <div class="bg-white/5 rounded-2xl p-6 w-[320px] h-[280px] flex flex-col justify-between shrink-0">
+          <p class="mb-6 text-gray-300 text-sm leading-relaxed">Websites built on @framer are fast and responsive. I enjoyed working with their tools for my portfolio site!</p>
+          <div class="flex items-center gap-4 pt-4">
+            <img src="https://i.pravatar.cc/48?img=2" alt="Fraky" class="w-12 h-12 rounded-full object-cover">
+            <div>
+              <h4 class="font-semibold">Fraky</h4>
+              <p class="text-sm text-gray-400">@frekyplay</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white/5 rounded-2xl p-6 w-[320px] h-[280px] flex flex-col justify-between shrink-0">
+          <p class="mb-6 text-gray-300 text-sm leading-relaxed">Websites built on @framer are fast and responsive. I enjoyed working with their tools for my portfolio site!</p>
+          <div class="flex items-center gap-4 pt-4">
+            <img src="https://i.pravatar.cc/48?img=12" alt="Beingmani" class="w-12 h-12 rounded-full object-cover">
+            <div>
+              <h4 class="font-semibold">Beingmani</h4>
+              <p class="text-sm text-gray-400">@beingmani</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white/5 rounded-2xl p-6 w-[320px] h-[280px] flex flex-col justify-between shrink-0">
+          <p class="mb-6 text-gray-300 text-sm leading-relaxed">I learned how to build a website in @Framer! Just random elements that’s responsive. If I can do it, so can you!</p>
+          <div class="flex items-center gap-4 pt-4">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Dann" class="w-12 h-12 rounded-full object-cover">
+            <div>
+              <h4 class="font-semibold">Dann</h4>
+              <p class="text-sm text-gray-400">@DannPetty</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white/5 rounded-2xl p-6 w-[320px] h-[280px] flex flex-col justify-between shrink-0">
+          <p class="mb-6 text-gray-300 text-sm leading-relaxed">Websites built on @framer help us build polished, flexible web pages with ease. Loved the process!</p>
+          <div class="flex items-center gap-4 pt-4">
+            <img src="https://randomuser.me/api/portraits/men/20.jpg" alt="Manoj" class="w-12 h-12 rounded-full object-cover">
+            <div>
+              <h4 class="font-semibold">Manoj</h4>
+              <p class="text-sm text-gray-400">@manojnayak</p>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <!-- JS untuk merender testimonial 2x -->
+      <script>
+        const container = document.currentScript.parentElement;
+        const template = container.querySelector('#testimonial');
+        for (let i = 0; i < 2; i++) {
+          container.insertBefore(template.content.cloneNode(true), template);
+        }
+        container.removeChild(template);
+      </script>
+
+    </div>
+  </div>
+
+  <style>
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); } 
+    }
+    .animate-slide {
+      animation: slide 40s linear infinite;
+    }
+  </style>
+
+
+<section class="bg-gradient-to-b from-[#062b2d] to-[#081013] rounded-3xl mx-2 sm:mx-6 lg:mx-20 mt-24 text-center py-12 sm:py-16 px-4 sm:px-8 lg:px-12 scroll-reveal">
+  <!-- Logo -->
+  <div class="mb-6 flex justify-center">
+    <img src="https://framerusercontent.com/images/cvn0qqe0jS1wja3wxuEqhNmDDJ8.png?scale-down-to=512"
+         alt="Hotama Logo"
+         class="w-30 h-12 object-contain">
+  </div>
+
+  <!-- Headline -->
+  <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-6">
+    Building smarter solutions for a better<br class="hidden md:block" />
+    future with <span class="text-teal-400">Hotama</span>
+  </h2>
+
+  <!-- CTA Button -->
+  <a href="#"
+     class="inline-block mt-4 bg-white text-dark-bg font-medium px-6 py-2 rounded-full hover:bg-teal-400 hover:text-white transition-colors duration-300">
+    Let’s Talk
+  </a>
+</section>
+
+ <!-- Footer Section -->
+<footer class="bg-dark-bg text-gray-400 py-17 px-6 mt-20">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20">
+    
+    
+    <!-- Company Info -->
+    <div class="scroll-reveal">
+  <img class="w-[180px] h-auto ml-3 mb-5" src="https://framerusercontent.com/images/cvn0qqe0jS1wja3wxuEqhNmDDJ8.png?scale-down-to=512" alt="">
+      <p class="text-sm leading-relaxed">
+        Empowering your digital transformation through innovation, technology, and tailored solutions.
+      </p>
+    </div>
+
+    <!-- Quick Links - Now aligned left on all screens -->
+    <div class="scroll-reveal">
+      <h3 class="text-white text-lg font-semibold mb-4">Quick Links</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="#services" class="hover:text-teal-400 transition">Our Services</a></li>
+        <li><a href="#about" class="hover:text-teal-400 transition">About Us</a></li>
+        <li><a href="#work" class="hover:text-teal-400 transition">Projects</a></li>
+        <li><a href="#testi" class="hover:text-teal-400 transition">Testimonials</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+<div class="scroll-reveal">
+  <h3 class="text-white text-lg font-semibold mb-4">Contact</h3>
+  <ul class="space-y-3 text-sm">
+    <li class="flex items-center gap-2">
+      <!-- Lokasi -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5s-3 1.343-3 3 1.343 3 3 3z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 22s8-4.5 8-10a8 8 0 10-16 0c0 5.5 8 10 8 10z"/>
+      </svg>
+      Pontianak, West Borneo
+    </li>
+    <li class="flex items-center gap-2">
+      <!-- Telepon -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.66l1.52 4.07a1 1 0 01-.27 1.11l-2.3 2.3a11.042 11.042 0 005.2 5.2l2.3-2.3a1 1 0 011.11-.27l4.07 1.52a1 1 0 01.66.94V19a2 2 0 01-2 2h-1C9.373 21 3 14.627 3 7V5z"/>
+      </svg>
+      (+62) 811 4867 735
+    </li>
+    <li class="flex items-center gap-2">
+      <!-- Website -->
+       <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+          d="M12 3c4.97 0 9 4.03 9 9s-4.03 9-9 9-9-4.03-9-9 4.03-9 9-9z" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+          d="M3 12h18M12 3c2.5 2.5 4 5.5 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.5-4-9s1.5-6.5 4-9z" />
+  </svg>
+  hotama.co.id
+</li>
+  </ul>
+</div>
+
+</footer>
+  <!-- Divider -->
+  <div class="border-t border-gray-700 mt-12 pt-6 text-center text-sm text-gray-500">
+    &copy; 2025 HOTAMA. All rights reserved.
+  </div>
+
+
+</section>
+
+    <script>
+
+        // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+
+if (mobileMenuBtn && mobileMenu) {
+  let menuOpen = false;
+
+  mobileMenuBtn.addEventListener('click', () => {
+    if (!menuOpen) {
+      mobileMenu.classList.add('show');
+      mobileMenu.classList.remove('pointer-events-none'); // Aktifkan klik
+    } else {
+      mobileMenu.classList.remove('show');
+      mobileMenu.classList.add('pointer-events-none'); // Nonaktifkan klik
+    }
+    menuOpen = !menuOpen;
+  });
+}
+
+
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('backdrop-blur-xl');
+            } else {
+                navbar.classList.remove('backdrop-blur-xl');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            observer.observe(card);
+        });
+
+   const toggleBtn = document.getElementById('toggleProjectsBtn');
+  const hiddenProjects = document.querySelectorAll('.project-hidden');
+  let isExpanded = false;
+
+  toggleBtn.addEventListener('click', () => {
+    hiddenProjects.forEach((project) => {
+      if (!isExpanded) {
+        project.classList.remove('hidden');
+        // Trigger reflow to restart animation
+        void project.offsetWidth;
+        project.classList.add('show');
+        project.classList.remove('hide');
+      } else {
+        project.classList.add('hide');
+        project.classList.remove('show');
+        setTimeout(() => {
+          project.classList.add('hidden');
+        }, 400); // match with CSS transition
+      }
+    });
+
+    toggleBtn.textContent = isExpanded ? 'See More' : 'Show Less';
+    isExpanded = !isExpanded;
+  }); 
+  
+  const OFFSET = 45; // sesuaikan dengan tinggi navbar kamu
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+
+      if (target) {
+        e.preventDefault();
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY - OFFSET;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+        
+const scrollRevealOptions = {
+  threshold: 0.1
+};
+
+const scrollRevealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      scrollRevealObserver.unobserve(entry.target);
+    }
+  });
+}, scrollRevealOptions);
+
+// Observasi semua elemen dengan class 'scroll-reveal'
+document.querySelectorAll('.scroll-reveal').forEach(el => {
+  scrollRevealObserver.observe(el);
+});
+
+ window.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.getElementById('navbar');
+    navbar.classList.remove('opacity-0', '-translate-y-10');
+    navbar.classList.add('opacity-100', 'translate-y-0');
+  });
+
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    card.style.transform = 'translateY(-5px) scale(1.05)'; // zoom in cepat
+    card.style.transition = 'transform 0.3s ease-out, box-shadow 0.4s ease-out';
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'translateY(0) scale(1)'; // zoom out pelan
+    card.style.transition = 'transform 0.6s ease-out, box-shadow 0.4s ease-out';
+  });
+});
+
+document.querySelectorAll('.service-card').forEach(card => {
+  const img = card.querySelector('img');
+  const title = card.querySelector('h3');
+  const text = card.querySelector('p');
+
+  card.addEventListener('mouseenter', () => {
+    // Card
+    card.style.transform = 'translateY(-5px) scale(1.01)';
+    card.style.transition = 'transform 0.3s ease-out, box-shadow 0.4s ease-out';
+
+    // Isi konten
+    img.style.transform = 'scale(1.02)';
+    img.style.transition = 'transform 0.4s ease-out';
+
+    title.style.color = '#1dd1a1';
+    title.style.transition = 'color 0.4s ease-out';
+
+    text.style.transform = 'translateY(-3px)';
+    text.style.opacity = '0.9';
+    text.style.transition = 'transform 0.4s ease-out, opacity 0.3s ease-out';
+  });
+
+  card.addEventListener('mouseleave', () => {
+    // Card
+    card.style.transform = 'translateY(0) scale(1)';
+    card.style.transition = 'transform 0.6s ease-out, box-shadow 0.4s ease-out';
+
+    // Isi konten
+    img.style.transform = 'scale(1)';
+    img.style.transition = 'transform 0.6s ease-out';
+
+    title.style.color = '';
+    title.style.transition = 'color 0.6s ease-out';
+
+    text.style.transform = 'translateY(0)';
+    text.style.opacity = '1';
+    text.style.transition = 'transform 0.6s ease-out, opacity 0.6s ease-out';
+  });
+});
+
+const serviceCards = document.querySelectorAll('.service-card');
+
+const serviceCardObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const index = Array.from(serviceCards).indexOf(entry.target);
+      entry.target.style.transitionDelay = `${index * 0.15}s`; // 0.15s jeda per card
+      entry.target.classList.add('show');
+      serviceCardObserver.unobserve(entry.target); // animasi hanya sekali
+    }
+  });
+}, { threshold: 0.2 });
+
+serviceCards.forEach(card => {
+  serviceCardObserver.observe(card);
+});
+
+
+  
+    </script>
+  
+</body>
+</html>
