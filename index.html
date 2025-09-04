@@ -7,9 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 <link rel="icon" type="image/png" href="img/icon.png">
+
+
+
     <script>
         tailwind.config = {
-            theme: {
+            theme: {  
                 extend: {
                     colors: {
                            'teal-custom': '#1dd1a1',
@@ -703,7 +706,7 @@
            alt="Project" 
            class="w-full h-[220px] object-cover transition-transform duration-500 group-hover:scale-105">
       
-      <!-- Overlay hanya untuk desktop -->
+      <!-- Overlay buat desktop -->
       <div class="absolute inset-0 bg-amber-800/60 hidden md:flex items-center justify-center 
                   opacity-0 transition-opacity duration-500 group-hover:opacity-100">
         
@@ -1044,7 +1047,62 @@
     &copy; 2025 HOTAMA. All rights reserved.
   </div>
 
+<!-- Back to Top -->
+<button id="backToTop" 
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'});" 
+        class="hidden fixed bottom-6 left-6 bg-teal-500 hover:bg-teal-600 text-white 
+               w-12 h-12 rounded-full flex items-center justify-center shadow-lg 
+               transition z-50 opacity-0 translate-y-6">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+  </svg>
+</button>
 
+<style>
+  .fade-slide-in {
+    animation: fadeSlideIn 0.4s ease-out forwards;
+  }
+  .fade-slide-out {
+    animation: fadeSlideOut 0.3s ease-in forwards;
+  }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeSlideOut {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(20px); }
+  }
+</style>
+
+<script>
+  const backToTopBtn = document.getElementById("backToTop");
+  const heroSection = document.getElementById("home");
+
+  let isVisible = false;
+
+  window.addEventListener("scroll", () => {
+    const heroBottom = heroSection.offsetHeight; 
+
+    if (window.scrollY > heroBottom) {
+      if (!isVisible) {
+        backToTopBtn.classList.remove("hidden", "fade-slide-out");
+        backToTopBtn.classList.add("fade-slide-in");
+        isVisible = true;
+      }
+    } else {
+      if (isVisible) {
+        backToTopBtn.classList.remove("fade-slide-in");
+        backToTopBtn.classList.add("fade-slide-out");
+        setTimeout(() => {
+          backToTopBtn.classList.add("hidden");
+        }, 300); // waktu sama dengan durasi animasi out
+        isVisible = false;
+      }
+    }
+  });
+</script>
 </section>
 
     <script>
