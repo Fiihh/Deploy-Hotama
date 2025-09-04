@@ -118,6 +118,24 @@
 }
 
 
+/* Phone Preview Animasi */
+@keyframes fadeSlideInPhone {
+  from { opacity: 0; transform: translateY(50px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* kondisi awal sebelum muncul */
+.phone-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+/* saat ter-observe → animasi dijalankan */
+.phone-reveal.show {
+  animation: fadeSlideInPhone 0.9s ease-out forwards;
+}
+
+
 
         .scroll-smooth {
             scroll-behavior: smooth;
@@ -384,12 +402,18 @@
   transform: scale(1.2);
 }
 
+/* Animasi Phone Preview */
+@keyframes fadeSlideInPhone {
+  from { opacity: 0; transform: translateY(50px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
 
 
     </style>
 </head>
 <body class="bg-gradient-to-b from-slate-900 to-black text-white font-inter scroll-smooth">
-    <!-- Navigation - Same as index.html -->
  <!-- Navigation - Same as index.html -->
    <nav id="navbar"
   class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl px-3 sm:px-5 py-4 bg-black/20 backdrop-blur-lg rounded-[32px] border border-white/20 shadow-md 
@@ -399,29 +423,30 @@
         <div class="relative flex items-center justify-between">
             <!-- Logo (kiri) -->
             <div class="flex items-center space-x-2">
+              <a href="index.html">
                 <img src="https://framerusercontent.com/images/cvn0qqe0jS1wja3wxuEqhNmDDJ8.png?scale-down-to=512"
                     alt="hotama" class="w-[120px] h-auto ml-3" />
-            </div>
+           </a>
+                  </div>
 
             <!-- Desktop Menu (tengah) -->
             <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center space-x-10 text-sm font-medium text-white">
                 <a href="#homepage" class="hover:text-teal-400 transition">Home Page</a>
-                <a href="index.html#about" class="hover:text-teal-400 transition">About Us</a>
-                <a href="allprojects.html" class="hover:text-teal-400 transition">Project</a>
-                <a href="index.html#testi" class="hover:text-teal-400 transition">Testimoni</a>
+                <a href="#about" class="hover:text-teal-400 transition">About</a>
+                <a href="#technical" class="hover:text-teal-400 transition">Technical</a>
             </div>
 
              <!-- Logo (kanan) -->
        <div class="hidden md:flex items-center">
   <a href="https://alquran.ai" 
-     class="ml-4 bg-purple-100 rounded-full px-4 py-2 flex items-center justify-center">
+     class="ml-4 bg-purple-100 rounded-full px-4 py-2 flex items-center justify-center"
+     target="_blank" 
+      rel="noopener noreferrer">
     <img src="https://alquran.ai/qaraa-web/img/logo1.webp" 
          alt="Qara'a Logo" 
          class="h-auto w-[82px]" />
   </a>
 </div>
-
-
 
 
             <!-- Mobile Hamburger -->
@@ -440,26 +465,27 @@
             class="md:hidden w-full max-w-2xl px-8 py-10 text-white opacity-0 pointer-events-none transition-all duration-500 ease-out">
             <div class="flex flex-col gap-6 text-lg font-semibold">
                 <a href="#homepage" class="hover:text-teal-400 transition">Home Page</a>
-                <a href="index.html#about" class="hover:text-teal-400 transition">About</a>
-                <a href="allprojects.html" class="hover:text-teal-400 transition">Technical</a>
-                <a href="index.html#testi" class="hover:text-teal-400 transition">Testimoni</a>
+                <a href="#about" class="hover:text-teal-400 transition">About</a>
+                <a href="#technical" class="hover:text-teal-400 transition">Technical</a>
             </div>
         </div>
     </nav>
 
 <!-- Hero Section -->
-<section id="homepage" class="hero-gradient relative min-h-screen flex items-center pt-[120px] md:pt-20 pb-1 overflow-hidden">
+<section id="homepage" class="hero-gradient relative min-h-screen flex items-center pt-[50px] md:pt-20 pb-1 overflow-hidden ">
   <div class="absolute inset-0 bg-gradient-to-b from-lawut via-lawut-dark to-dark-bg opacity-90"></div>
 
   <div class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-4 sm:px-6 lg:px-8">
     
-    <!-- Phone Preview -->
-    <div class="relative w-full flex justify-center phone-reveal -mt-12 sm:mt-0 order-1 md:order-none">
-      <div class="relative w-[220px] sm:w-[220px] md:w-[320px]">
-        <img src="img/mobileqaraa.png" alt="iPhone Frame"
-             class="relative w-full h-auto pointer-events-none z-9" />
-      </div>
-    </div>
+<!-- Phone Preview -->
+<div class="relative w-full flex justify-center mt-12 sm:mt-0 order-1 md:order-none phone-reveal">
+  <div class="relative w-[220px] sm:w-[220px] md:w-[320px] phone-reveal">
+    <img src="img/mobileqaraa.png" alt="iPhone Frame"
+         class="relative w-full h-auto pointer-events-none z-9" />
+  </div>
+</div>
+
+
 
     <!-- Text Content -->
     <div class="flex flex-col items-start text-left gap-6 scroll-reveal -mt-6 md:-mt-10 order-2 md:order-none">
@@ -483,13 +509,15 @@
      <!-- Buttons -->
 <div class="flex justify-start gap-4 mt-4">
   <!-- Google Play -->
-  <a href="#"
+  <a href="https://play.google.com/store/apps/details?id=com.bismillah.amaljariyah"
      class="group relative bg-[#0d1e22] 
             px-4 py-2 md:px-8 md:py-3 
             rounded-2xl border border-transparent 
             hover:border-teal-400 hover:shadow-teal-400/30 hover:shadow-lg
             transition duration-300 transform hover:scale-105
-            flex items-center gap-3">
+            flex items-center gap-3
+            " target="_blank" 
+             rel="noopener noreferrer">
     <img src="https://img.utdstc.com/icon/5c9/3c4/5c93c4f2937078690d2e9c42fe12a46f9d32ae270eaaed84142fdd10c4e58740:100"
          class="w-6 h-6 md:w-8 md:h-8 object-contain" />
     <div class="flex flex-col items-start leading-tight">
@@ -499,13 +527,15 @@
   </a>
 
   <!-- App Store -->
-  <a href="#"
+  <a href="https://apps.apple.com/id/app/qaraa-1-belajar-ngaji-quran/id1520521429?l=id"
      class="group relative bg-[#0d1e22] 
             px-4 py-2 md:px-8 md:py-3 
             rounded-2xl border border-transparent 
             hover:border-teal-400 hover:shadow-teal-400/30 hover:shadow-lg
             transition duration-300 transform hover:scale-105
-            flex items-center gap-3">
+            flex items-center gap-3"
+            target="_blank" 
+            rel="noopener noreferrer">
     <img src="img/apple.png" class="w-6 h-6 md:w-8 md:h-8 object-contain" />
     <div class="flex flex-col items-start leading-tight">
       <span class="text-[10px] md:text-xs text-gray-300">Get it on</span>
@@ -568,7 +598,7 @@ Fun
 
 
     <!-- Technical Details -->
-    <section id="services" class="py-20  bg-dark-bg">
+    <section id="technical" class="py-20  bg-dark-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                  <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-teal-500 text-teal-400 bg-teal-500/10 w-max mx-auto mb-4 scroll-reveal">
@@ -642,8 +672,10 @@ Fun
   </h2>
 
   <!-- CTA Button -->
-  <a href="#"
-     class="inline-block mt-4 bg-white text-dark-bg font-medium px-6 py-2 rounded-full hover:bg-teal-400 hover:text-white transition-colors duration-300">
+  <a href="https://www.linkedin.com/company/putrahotama/posts/?feedView=all"
+     class="inline-block mt-4 bg-white text-dark-bg font-medium px-6 py-2 rounded-full hover:bg-teal-400 hover:text-white transition-colors duration-300"
+     target="_blank" 
+   rel="noopener noreferrer">
     Let’s Talk
   </a>
 </section>
@@ -656,10 +688,11 @@ Fun
   <!-- Wrapper logo Hotama + Qara'a -->
   <div class="flex items-center gap-4 mb-5 ml-3">
     <!-- Hotama Logo -->
+     <a href="index.html">
     <img class="w-[180px] h-auto" 
          src="https://framerusercontent.com/images/cvn0qqe0jS1wja3wxuEqhNmDDJ8.png" 
          alt="Hotama Logo">
-
+    </a>
     <!-- Qara'a Logo -->
     <a href="https://alquran.ai" 
        class="bg-purple-100 rounded-full px-3 py-2 flex items-center justify-center">
@@ -679,13 +712,12 @@ Fun
 
     <!-- Menu -->
     <div class="scroll-reveal">
-      <h3 class="text-white text-lg font-semibold mb-4">Menu</h3>
+      <h3 class="text-white text-lg font-semibold mb-4">Quick Links</h3>
       <ul class="space-y-2 text-sm">
-        <li><a href="index.html#services" class="hover:text-teal-400 transition">Our Services</a></li>
-        <li><a href="index.html#about" class="hover:text-teal-400 transition">About Us</a></li>
-        <li><a href="allprojects.html" class="hover:text-teal-400 transition">Projects</a></li>
-        <li><a href="index.html#testi" class="hover:text-teal-400 transition">Testimonials</a></li>
-      </ul>
+        <li><a href="#homepage" class="hover:text-teal-400 transition">Home Page</a></li>
+        <li><a href="#about" class="hover:text-teal-400 transition">About</a></li>
+        <li><a href="#technical " class="hover:text-teal-400 transition">Technical</a></li>
+        </ul>
     </div>
 
     <!-- Contact -->
@@ -721,6 +753,105 @@ Fun
 <div class="bg-dark-bg text-gray-400 border-t border-gray-700 mt-8 pt-6 text-center text-sm">
    &copy; 2025 HOTAMA. All rights reserved.
   </div>
+  <!-- Floating Buttons -->
+   <div class="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
+<!-- WhatsApp Support -->
+<a id="waButton" href="https://api.whatsapp.com/send?phone=6281258199694&text=Assalamualaikum+kak%2C+saya+punya+pertanyaan+terkait+belajar+Qur%27an+di+Qara%27a" target="_blank" rel="noopener noreferrer"
+   class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white 
+          w-12 h-12 rounded-full flex items-center justify-center shadow-lg 
+          transition z-50 hidden opacity-0 translate-y-6">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M20.52 3.48A11.91 11.91 0 0012 0C5.37 0 0 5.37 0 12a11.9 11.9 0 001.65 6.02L0 24l6.2-1.63A11.9 11.9 0 0012 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 21.5c-1.8 0-3.55-.47-5.1-1.36l-.36-.2-3.68.97.98-3.6-.24-.37A9.5 9.5 0 1121.5 12c0 5.25-4.25 9.5-9.5 9.5zm4.94-7.19c-.27-.13-1.58-.78-1.82-.87-.24-.09-.42-.13-.6.14-.18.27-.69.87-.85 1.05-.15.18-.31.2-.58.07-.27-.13-1.14-.42-2.18-1.34-.8-.71-1.34-1.59-1.5-1.86-.16-.27-.02-.41.12-.54.12-.12.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.04-.34-.02-.47-.07-.13-.6-1.45-.82-1.99-.21-.5-.43-.43-.6-.43-.16 0-.34-.02-.52-.02-.18 0-.47.07-.71.34-.24.27-.93.91-.93 2.23 0 1.32.95 2.6 1.09 2.78.13.18 1.87 2.85 4.54 3.99.63.27 1.12.43 1.51.55.63.2 1.2.17 1.65.1.5-.07 1.58-.64 1.8-1.25.22-.62.22-1.15.15-1.25-.07-.11-.25-.18-.52-.31z"/>
+  </svg>
+</a>
+
+<style>
+  .fade-slide-in {
+    animation: fadeSlideIn 0.4s ease-out forwards;
+  }
+  .fade-slide-out {
+    animation: fadeSlideOut 0.3s ease-in forwards;
+  }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeSlideOut {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(20px); }
+  }
+</style>
+
+<script>
+  const waBtn = document.getElementById("waButton");
+
+  window.addEventListener("DOMContentLoaded", () => {
+    waBtn.classList.remove("hidden");
+    waBtn.classList.add("fade-slide-in");
+  });
+</script>
+
+
+<!-- Back to Top -->
+<button id="backToTop" 
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'});" 
+        class="hidden fixed bottom-6 left-6 bg-teal-500 hover:bg-teal-600 text-white 
+               w-12 h-12 rounded-full flex items-center justify-center shadow-lg 
+               transition z-50 opacity-0 translate-y-6">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+  </svg>
+</button>
+
+<style>
+  .fade-slide-in {
+    animation: fadeSlideIn 0.4s ease-out forwards;
+  }
+  .fade-slide-out {
+    animation: fadeSlideOut 0.3s ease-in forwards;
+  }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeSlideOut {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(20px); }
+  }
+</style>
+
+<script>
+  const backToTopBtn = document.getElementById("backToTop");
+  const heroSection = document.getElementById("homepage");
+
+  let isVisible = false;
+
+  window.addEventListener("scroll", () => {
+    const heroBottom = heroSection.offsetHeight; 
+
+    if (window.scrollY > heroBottom) {
+      if (!isVisible) {
+        backToTopBtn.classList.remove("hidden", "fade-slide-out");
+        backToTopBtn.classList.add("fade-slide-in");
+        isVisible = true;
+      }
+    } else {
+      if (isVisible) {
+        backToTopBtn.classList.remove("fade-slide-in");
+        backToTopBtn.classList.add("fade-slide-out");
+        setTimeout(() => {
+          backToTopBtn.classList.add("hidden");
+        }, 300); // waktu sama dengan durasi animasi out
+        isVisible = false;
+      }
+    }
+  });
+</script>
+
+
+  
     </section>
     <script>
         // Mobile menu toggle
