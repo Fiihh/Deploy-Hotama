@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details - Qaraa</title>
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'teal-custom': '#1dd1a1',
+                        'lawuts': '#034A4F',
+                        'lawut': '#067079',
+                        'dark-bg': '#081013',
+                        'dark-card': '#1a2332',
+                        'lawut-dark': '#013a3d',
+                        'teal-hytam': '#063E42',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter'],
+                        'sans':['sans-serif'],
+                    },
+                    backdropBlur: {
+                        'xs': '2px',
+                    },
+                    animation: {
+                        'scroll': 'scroll 20s linear infinite',
+                    },
+                    keyframes: {
+                        'scroll': {
+                            from: { transform: 'translateX(0)' },
+                            to: { transform: 'translateX(-100%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+     .glassmorphism {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: linear-gradient(135deg, rgba(255, 255, 255), rgba(255,255,255));
+            border-radius: 9999px; /* rounded-full */
+            margin: 1rem auto;
+            max-width: fit-content;
+            padding: 0.75rem 2rem;
+            
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
+        }
+        .card-gradient {
+            background: linear-gradient(135deg, #1a2332 0%, #0f1419 100%);
+        }
+  .service-card {
+    transition: transform 0.6s ease-out, box-shadow 0.4s ease-out; /* 0.6s biar pelan */
+  width: 100%;
+  max-width: 100%;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.service-card.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.service-card:hover {
+  transform: scale(1.05); /* zoom in */
+  box-shadow: 0 20px 40px rgba(29, 209, 161, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+        .service-card img {
+    width: 72px;
+    height: auto;
+      transition: transform 0.6s ease-out, color 0.6s ease-out, opacity 0.6s ease-out;
+
+}
+
+.service-card h3 {
+    font-size: 1.31rem; /* lebih kecil */
+      transition: transform 0.6s ease-out, color 0.6s ease-out, opacity 0.6s ease-out;
+
+}
+
+.service-card p {
+    font-size: 1.02rem; /* lebih kecil */
+      transition: transform 0.6s ease-out, color 0.6s ease-out, opacity 0.6s ease-out;
+
+}
+#mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease, padding 0.3s ease, opacity 0.3s ease;
+}
+
+#mobile-menu.show {
+  max-height: 240px;  /* atau sesuai tinggi menu */
+  padding-top: 2.5rem;  /* sesuai px-8 py-10 */
+  padding-bottom: 2.5rem;
+  opacity: 1;
+}
+
+
+/* Phone Preview Animasi */
+@keyframes fadeSlideInPhone {
+  from { opacity: 0; transform: translateY(50px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* kondisi awal sebelum muncul */
+.phone-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+/* saat ter-observe → animasi dijalankan */
+.phone-reveal.show {
+  animation: fadeSlideInPhone 0.9s ease-out forwards;
+}
+
+
+
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+        .typing-animation {
+            border-right: 2px solid #1dd1a1;
+            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+        }
+        
+        /* Improved Logo Scroll Animation */
+        .logo-scroll-container {
+            overflow: hidden;
+            position: relative;
+            width: 75%;
+            mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+        }
+        
+        .logo-scroll-track {
+            display: flex;
+            animation: scroll 100s linear infinite;
+            width: calc(200%);
+        }
+
+        
+        .logo-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 25%;
+            flex-shrink: 0;
+        }
+        
+        .logo-item {
+            width: 80px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+            filter: grayscale(100%);
+        }
+        
+        .logo-item:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+        
+        .logo-item img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: #1dd1a1 }
+        }
+
+          .marquee {
+      display: flex;
+      block-size: var(--marquee-item-height);
+      margin-block: var(--marquee-item-height);
+      position: relative;
+      overflow-x: hidden;
+      mask-image: linear-gradient(
+        to right,
+        hsl(0 0% 0% / 0),
+        hsl(0 0% 0% / 1) 50%,
+        hsl(0 0% 0% / 1) 25%,
+        hsl(0 0% 0% / 0)
+      );
+    }
+
+    .marquee--8 {
+      --marquee-item-width: 150px;
+      --marquee-item-height: 100px;
+      --marquee-duration: 36s;
+      --marquee-items: 8;
+    }
+
+    .marquee__item {
+      --marquee-item-offset: max(
+        calc(var(--marquee-item-width) * var(--marquee-items)),
+        calc(100% + var(--marquee-item-width))
+      );
+      --marquee-delay: calc(var(--marquee-duration) / var(--marquee-items) * (var(--marquee-items) - var(--marquee-item-index)) * -1);
+      position: absolute;
+      inset-inline-start: var(--marquee-item-offset);
+      transform: translateX(-50%);
+      animation: go linear var(--marquee-duration) var(--marquee-delay, 0s) infinite;
+    }
+
+    .marquee__item:nth-child(4n) {
+      border-top-right-radius: 1rem;
+    }
+
+    .marquee__item:nth-child(4n + 1) {
+      border-bottom-right-radius: 1rem;
+    }
+
+    .marquee__item:nth-child(4n + 2) {
+      border-bottom-left-radius: 1rem;
+    }
+
+    .marquee__item:nth-child(4n + 3) {
+      border-top-left-radius: 1rem;
+    }
+
+    .marquee--8 .marquee__item:nth-of-type(1) { --marquee-item-index: 1; }
+    .marquee--8 .marquee__item:nth-of-type(2) { --marquee-item-index: 2; }
+    .marquee--8 .marquee__item:nth-of-type(3) { --marquee-item-index: 3; }
+    .marquee--8 .marquee__item:nth-of-type(4) { --marquee-item-index: 4; }
+    .marquee--8 .marquee__item:nth-of-type(5) { --marquee-item-index: 5; }
+    .marquee--8 .marquee__item:nth-of-type(6) { --marquee-item-index: 6; }
+    .marquee--8 .marquee__item:nth-of-type(7) { --marquee-item-index: 7; }
+    .marquee--8 .marquee__item:nth-of-type(8) { --marquee-item-index: 8; }
+
+    @keyframes go {
+      to {
+        inset-inline-start: calc(var(--marquee-item-width) * -1);
+      }
+    }
+    
+.fade-slide {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .fade-slide.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-slide.hide {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+    
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: all 0.6s ease-out;
+  }
+
+  .scroll-reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+ .about-us-img {
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.about-us-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: scale(1); /* default normal */
+  transition: transform 0.6s ease-out;
+}
+
+.about-us-img:hover img {
+  transform: scale(1.02); /* hover → membesar */
+}
+
+
+
+@media (max-width: 768px) {
+  #navbar {
+    max-width: 370px; /* sesuaikan dengan gambar */
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  
+  }
+}
+@keyframes slideUpFade {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up-fade {
+  animation: slideUpFade 0.6s ease-out forwards;
+}
+
+.service-card ul li {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.service-card.show ul li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-card.show ul li:nth-child(1) { transition-delay: 0.1s; }
+.service-card.show ul li:nth-child(2) { transition-delay: 0.2s; }
+.service-card.show ul li:nth-child(3) { transition-delay: 0.3s; }
+.service-card.show ul li:nth-child(4) { transition-delay: 0.4s; }
+
+/* Default bullet */
+.service-card ul li::marker {
+  color: #9ca3af; /* abu-abu default */
+  transition: color 0.3s ease;
+}
+
+/* Saat card dihover, bullet ikut berubah warna */
+.service-card:hover ul li::marker {
+  color: #1dd1a1; /* hijau pas hover */
+    transform: translateX(3px); /* opsional: geser dikit biar interaktif */
+
+}
+
+.service-card.show ul li:nth-child(1)::marker { transition-delay: 0.1s; }
+.service-card.show ul li:nth-child(2)::marker { transition-delay: 0.2s; }
+.service-card.show ul li:nth-child(3)::marker { transition-delay: 0.3s; }
+.service-card.show ul li:nth-child(4)::marker { transition-delay: 0.4s; }
+
+.custom-list {
+  list-style: none; /* hilangkan bullet bawaan */
+  padding: 0;
+  margin: 0;
+}
+
+.custom-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.custom-list .bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #9ca3af; /* abu default */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.custom-list .desc {
+  color: #9ca3af; /* teks deskripsi tetap abu */
+  transition: transform 0.3s ease;
+}
+
+/* Hover efek: hanya bullet berubah */
+.service-card:hover .custom-list .bullet {
+  background: #1dd1a1; /* bullet hijau */
+  transform: scale(1.2);
+}
+
+/* Animasi Phone Preview */
+@keyframes fadeSlideInPhone {
+  from { opacity: 0; transform: translateY(50px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+    </style>
+</head>
+<body class="bg-gradient-to-b from-slate-900 to-black text-white font-inter scroll-smooth">
+ <!-- Navigation - Same as index.html -->
+   <nav id="navbar"
+  class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl px-3 sm:px-5 py-4 bg-black/20 backdrop-blur-lg rounded-[32px] border border-white/20 shadow-md 
+         opacity-0 -translate-y-20 transition-all duration-700 ease-out">
+
+
+        <div class="relative flex items-center justify-between">
+            <!-- Logo (kiri) -->
+            <div class="flex items-center space-x-2">
+              <a href="index.html">
+                <img src="https://framerusercontent.com/images/cvn0qqe0jS1wja3wxuEqhNmDDJ8.png?scale-down-to=512"
+                    alt="hotama" class="w-[120px] h-auto ml-3" />
+           </a>
+                  </div>
+
+            <!-- Desktop Menu (tengah) -->
+            <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center space-x-10 text-sm font-medium text-white">
+                <a href="#homepage" class="hover:text-teal-400 transition">Home Page</a>
+                <a href="#about" class="hover:text-teal-400 transition">About</a>
+                <a href="#technical" class="hover:text-teal-400 transition">Technical</a>
+            </div>
+
+             <!-- Logo (kanan) -->
+       <div class="hidden md:flex items-center">
+  <a href="https://alquran.ai" 
+     class="ml-4 bg-purple-100 rounded-full px-4 py-2 flex items-center justify-center"
+     target="_blank" 
+      rel="noopener noreferrer">
+    <img src="https://alquran.ai/qaraa-web/img/logo1.webp" 
+         alt="Qara'a Logo" 
+         class="h-auto w-[82px]" />
+  </a>
+</div>
+
+
+            <!-- Mobile Hamburger -->
+            <div class="md:hidden flex items-center space-x-2">
+                <button id="mobile-menu-btn" class="text-white hover:text-teal-400 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu"
+            class="md:hidden w-full max-w-2xl px-8 py-10 text-white opacity-0 pointer-events-none transition-all duration-500 ease-out">
+            <div class="flex flex-col gap-6 text-lg font-semibold">
+                <a href="#homepage" class="hover:text-teal-400 transition">Home Page</a>
+                <a href="#about" class="hover:text-teal-400 transition">About</a>
+                <a href="#technical" class="hover:text-teal-400 transition">Technical</a>
+            </div>
+        </div>
+    </nav>
+
+<!-- Hero Section -->
+<section id="homepage" class="hero-gradient relative min-h-screen flex items-center pt-[50px] md:pt-20 pb-1 overflow-hidden ">
+  <div class="absolute inset-0 bg-gradient-to-b from-lawut via-lawut-dark to-dark-bg opacity-90"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-4 sm:px-6 lg:px-8">
+    
+<!-- Phone Preview -->
+<div class="relative w-full flex justify-center mt-12 sm:mt-0 order-1 md:order-none phone-reveal">
+  <div class="relative w-[220px] sm:w-[220px] md:w-[320px] phone-reveal">
+    <img src="img/mobileqaraa.png" alt="iPhone Frame"
+         class="relative w-full h-auto pointer-events-none z-9" />
+  </div>
+</div>
+
+
+
+    <!-- Text Content -->
+    <div class="flex flex-col items-start text-left gap-6 scroll-reveal -mt-6 md:-mt-10 order-2 md:order-none">
+      
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-teal-400 text-teal-300 bg-teal-500/10 shadow-sm">
+        <span class="w-2.5 h-2.5 bg-teal-400 rounded-full"></span>
+        <span class="text-sm font-medium">Qara’a Release</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-3xl md:text-5xl font-bold leading-snug">
+        Your Fun Qur’an Learning Experience with <span class="text-purple-400">Qara’a</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-gray-300 text-sm md:text-base leading-snug max-w-md">
+        Easily learn to read the Qur'an anywhere with 100+ materials using Artificial Intelligence.
+      </p>
+
+     <!-- Buttons -->
+<div class="flex justify-start gap-4 mt-4">
+  <!-- Google Play -->
+  <a href="https://play.google.com/store/apps/details?id=com.bismillah.amaljariyah"
+     class="group relative bg-[#0d1e22] 
+            px-4 py-2 md:px-8 md:py-3 
+            rounded-2xl border border-transparent 
+            hover:border-teal-400 hover:shadow-teal-400/30 hover:shadow-lg
+            transition duration-300 transform hover:scale-105
+            flex items-center gap-3
+            " target="_blank" 
+             rel="noopener noreferrer">
+    <img src="https://img.utdstc.com/icon/5c9/3c4/5c93c4f2937078690d2e9c42fe12a46f9d32ae270eaaed84142fdd10c4e58740:100"
+         class="w-6 h-6 md:w-8 md:h-8 object-contain" />
+    <div class="flex flex-col items-start leading-tight">
+      <span class="text-[10px] md:text-xs text-gray-300">Get it on</span>
+      <span class="text-sm md:text-base font-semibold">Google Play</span>
+    </div>
+  </a>
+
+  <!-- App Store -->
+  <a href="https://apps.apple.com/id/app/qaraa-1-belajar-ngaji-quran/id1520521429?l=id"
+     class="group relative bg-[#0d1e22] 
+            px-4 py-2 md:px-8 md:py-3 
+            rounded-2xl border border-transparent 
+            hover:border-teal-400 hover:shadow-teal-400/30 hover:shadow-lg
+            transition duration-300 transform hover:scale-105
+            flex items-center gap-3"
+            target="_blank" 
+            rel="noopener noreferrer">
+    <img src="img/apple.png" class="w-6 h-6 md:w-8 md:h-8 object-contain" />
+    <div class="flex flex-col items-start leading-tight">
+      <span class="text-[10px] md:text-xs text-gray-300">Get it on</span>
+      <span class="text-sm md:text-base font-semibold">App Store</span>
+    </div>
+  </a>
+</div>
+
+
+      <!-- Stats -->
+      <div class="flex items-center gap-6 mt-3 text-gray-300 ml-7 md:ml-12 lg:ml-10">
+        <div>
+          <span class="text-xl md:text-2xl font-bold">4.8</span>
+          <p class="text-xs md:text-sm">Rating App</p>
+        </div>
+        <div>
+          <span class="text-xl md:text-2xl font-bold">1,8M+</span>
+          <p class="text-xs md:text-sm">Pengguna</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <!-- Project Overview Section -->
+<section id="about" class="py-20 bg-dark-bg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center text-center lg:text-left">
+      
+      <!-- Image -->
+      <div class="order-1 lg:order-1">
+       <div class="about-us-img rounded-2xl p-3 backdrop-blur-sm scroll-reveal mx-auto sm:w-auto w-full "> 
+  <img class="rounded-2xl " src="https://framerusercontent.com/images/LCVsDCZG7TxEIg3DCqODtWRG0.png" alt="pegasus" class="max-w-fit"/>
+</div>
+
+      </div>
+      
+      <!-- Text -->
+      <div class="order-2 lg:order-2">
+        <!-- Label -->
+        <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-teal-500 text-teal-400 bg-teal-500/10 w-max mx-auto mb-4 scroll-reveal">
+          <span class="w-2.5 h-2.5 bg-teal-400 rounded-full"></span>
+          <span class="text-sm font-medium">About Qara’a</span>
+        </div>
+        
+        <!-- Title -->
+        <h2 class="text-[39px] font-semibold font-inter mb-2 bg-gradient-to-b from-white to-lawut via-white text-transparent bg-clip-text p-2 scroll-reveal"> Make Learn Qur'an
+Fun
+  </h1>
+        </h2>
+        
+        <!-- Description -->
+        <p class="text-gray-300 text-lg leading-relaxed scroll-reveal">
+  Qara'a is an innovative educational application that combines traditional Islamic learning with modern digital technology. The platform offers interactive Quran learning, prayer time tracking, and comprehensive Islamic educational content.        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Technical Details -->
+    <section id="technical" class="py-20  bg-dark-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                 <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-teal-500 text-teal-400 bg-teal-500/10 w-max mx-auto mb-4 scroll-reveal">
+      <span class="w-2.5 h-2.5 bg-teal-400 rounded-full "></span>
+      <span class="text-sm font-medium">Technical Detail</span>
+    </div>
+                <h2 class="text-5xl font-semibold font-inter mb-2 bg-gradient-to-b from-white to-lawut via-white text-transparent bg-clip-text box-border size-50 border-1 p-2 scroll-reveal scroll-reveal">Technical Implementation</h2>
+            </div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-2 sm:px-8 lg:px-20">
+<!-- Technical Card 1 -->
+<div class="service-card rounded-xl p-8 text-left bg-[#0d1e22] border border-white/10 hover:border-teal-400 transition-colors">
+  <div class="mb-8">
+    <img src="https://framerusercontent.com/images/Hs3vGn1lKBRtuffySk1J6ICPHg.svg" alt="Service Icon" class="w-[60px] h-[60px]">
+  </div>
+  <h3 class="text-lg font-semibold mb-3">Frontend</h3>
+
+  <ul class="custom-list text-sm leading-relaxed text-gray-400">
+    <li><span class="bullet"></span><span class="desc">React Native for cross-platform</span></li>
+    <li><span class="bullet"></span><span class="desc">Tailwind CSS for styling</span></li>
+    <li><span class="bullet"></span><span class="desc">Redux for state management</span></li>
+    <li><span class="bullet"></span><span class="desc">React Navigation</span></li>
+  </ul>
+</div>
+
+ <!-- Technical Card 2 -->
+<div class="service-card rounded-xl p-8 text-left bg-[#0d1e22] border border-white/10 hover:border-teal-400 transition-colors">
+      <div class="mb-8">
+          <img src="https://framerusercontent.com/images/3SWLuSYSIPtmIgmKJOPOh6YE.svg" alt="Service Icon" class="w-[60px] h-[60px]">
+      </div>
+      <h3 class="text-lg font-semibold mb-3">Backend</h3>
+     <ul class="custom-list text-sm leading-relaxed text-gray-400">
+    <li><span class="bullet"></span><span class="desc">Node.js with Express</span></li>
+    <li><span class="bullet"></span><span class="desc">PostgreSQL database</span></li>
+    <li><span class="bullet"></span><span class="desc">RESTful API architecture</span></li>
+    <li><span class="bullet"></span><span class="desc">JWT authentication</span></li>
+  </ul>
+  </div>
+             <!-- Technical Card 3 -->
+<div class="service-card rounded-xl p-8 text-left bg-[#0d1e22] border border-white/10 hover:border-teal-400 transition-colors">
+      <div class="mb-8">
+          <img src="https://framerusercontent.com/images/M0mqWWffbKlVGfK78rGgORzBU.svg" alt="Service Icon" class="w-[60px] h-[60px]">
+      </div>
+      <h3 class="text-lg font-semibold mb-3">Features</h3>
+            <ul class="custom-list text-sm leading-relaxed text-gray-400">
+    <li><span class="bullet"></span><span class="desc">Offline mode capability</span></li>
+    <li><span class="bullet"></span><span class="desc">Push notifications</span></li>
+    <li><span class="bullet"></span><span class="desc">Audio streaming</span></li>
+    <li><span class="bullet"></span><span class="desc">Location-based services</span></li>
+  </ul>
+  </div>
+
+
+            </div>
+        </div>
+<section class="bg-gradient-to-b from-[#062b2d] to-[#081013] 
+                rounded-3xl mx-4 sm:mx-6 lg:mx-20 
+                mt-24 text-center 
+                py-12 sm:py-16 
+                px-6 sm:px-8 lg:px-12 scroll-reveal">
+  <!-- Logo -->
+  <div class="mb-6 flex justify-center">
+    <img src="https://framerusercontent.com/images/cvn0qqe0jS1wja3wxuEqhNmDDJ8.png?scale-down-to=512"
+         alt="Hotama Logo"
+         class="w-30 h-12 object-contain">
+  </div>
+
+  <!-- Headline -->
+  <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-6">
+    Building smarter solutions for a better<br class="hidden md:block" />
+    future with <span class="text-teal-400">Hotama</span>
+  </h2>
+
+  <!-- CTA Button -->
+  <a href="https://www.linkedin.com/company/putrahotama/posts/?feedView=all"
+     class="inline-block mt-4 bg-white text-dark-bg font-medium px-6 py-2 rounded-full hover:bg-teal-400 hover:text-white transition-colors duration-300"
+     target="_blank" 
+   rel="noopener noreferrer">
+    Let’s Talk
+  </a>
+</section>
+
+ <!-- Footer -->
+<footer class="bg-dark-bg text-gray-400 py-2 px-6 mt-[100px]">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-11">  
+  <!-- Brand -->
+<div class="scroll-reveal">
+  <!-- Wrapper logo Hotama + Qara'a -->
+  <div class="flex items-center gap-4 mb-5 ml-3">
+    <!-- Hotama Logo -->
+     <a href="index.html">
+    <img class="w-[180px] h-auto" 
+         src="https://framerusercontent.com/images/cvn0qqe0jS1wja3wxuEqhNmDDJ8.png" 
+         alt="Hotama Logo">
+    </a>
+    <!-- Qara'a Logo -->
+    <a href="https://alquran.ai" 
+       class="bg-purple-100 rounded-full px-3 py-2 flex items-center justify-center">
+      <img src="https://alquran.ai/qaraa-web/img/logo1.webp" 
+           alt="Qara'a Logo" 
+           class="h-auto w-[92px]" />
+    </a>
+  </div>
+
+  <!-- Deskripsi -->
+  <p class="text-sm leading-relaxed ml-3">
+    Empowering your digital transformation through innovation, technology, and tailored solutions.
+  </p>
+</div>
+
+
+
+    <!-- Menu -->
+    <div class="scroll-reveal">
+      <h3 class="text-white text-lg font-semibold mb-4">Quick Links</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="#homepage" class="hover:text-teal-400 transition">Home Page</a></li>
+        <li><a href="#about" class="hover:text-teal-400 transition">About</a></li>
+        <li><a href="#technical " class="hover:text-teal-400 transition">Technical</a></li>
+        </ul>
+    </div>
+
+    <!-- Contact -->
+    <div class="scroll-reveal">
+      <h3 class="text-white text-lg font-semibold mb-4">Contact</h3>
+      <ul class="space-y-3 text-sm">
+        <li class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5s-3 1.343-3 3 1.343 3 3 3z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 22s8-4.5 8-10a8 8 0 10-16 0c0 5.5 8 10 8 10z"/>
+          </svg>
+          Pontianak, West Borneo
+        </li>
+        <li class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.66l1.52 4.07a1 1 0 01-.27 1.11l-2.3 2.3a11.042 11.042 0 005.2 5.2l2.3-2.3a1 1 0 011.11-.27l4.07 1.52a1 1 0 01.66.94V19a2 2 0 01-2 2h-1C9.373 21 3 14.627 3 7V5z"/>
+          </svg>
+          (+62) 811 4867 735
+        </li>
+        <li class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3c4.97 0 9 4.03 9 9s-4.03 9-9 9-9-4.03-9-9 4.03-9 9-9z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M12 3c2.5 2.5 4 5.5 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.5-4-9s1.5-6.5 4-9z"/>
+          </svg>
+          hotama.co.id
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+</footer>
+<div class="bg-dark-bg text-gray-400 border-t border-gray-700 mt-8 pt-6 text-center text-sm">
+   &copy; 2025 HOTAMA. All rights reserved.
+  </div>
+  <!-- Floating Buttons -->
+   <div class="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
+<!-- WhatsApp Support -->
+<a id="waButton" href="https://api.whatsapp.com/send?phone=6281258199694&text=Assalamualaikum+kak%2C+saya+punya+pertanyaan+terkait+belajar+Qur%27an+di+Qara%27a" target="_blank" rel="noopener noreferrer"
+   class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white 
+          w-12 h-12 rounded-full flex items-center justify-center shadow-lg 
+          transition z-50 hidden opacity-0 translate-y-6">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M20.52 3.48A11.91 11.91 0 0012 0C5.37 0 0 5.37 0 12a11.9 11.9 0 001.65 6.02L0 24l6.2-1.63A11.9 11.9 0 0012 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 21.5c-1.8 0-3.55-.47-5.1-1.36l-.36-.2-3.68.97.98-3.6-.24-.37A9.5 9.5 0 1121.5 12c0 5.25-4.25 9.5-9.5 9.5zm4.94-7.19c-.27-.13-1.58-.78-1.82-.87-.24-.09-.42-.13-.6.14-.18.27-.69.87-.85 1.05-.15.18-.31.2-.58.07-.27-.13-1.14-.42-2.18-1.34-.8-.71-1.34-1.59-1.5-1.86-.16-.27-.02-.41.12-.54.12-.12.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.04-.34-.02-.47-.07-.13-.6-1.45-.82-1.99-.21-.5-.43-.43-.6-.43-.16 0-.34-.02-.52-.02-.18 0-.47.07-.71.34-.24.27-.93.91-.93 2.23 0 1.32.95 2.6 1.09 2.78.13.18 1.87 2.85 4.54 3.99.63.27 1.12.43 1.51.55.63.2 1.2.17 1.65.1.5-.07 1.58-.64 1.8-1.25.22-.62.22-1.15.15-1.25-.07-.11-.25-.18-.52-.31z"/>
+  </svg>
+</a>
+
+<style>
+  .fade-slide-in {
+    animation: fadeSlideIn 0.4s ease-out forwards;
+  }
+  .fade-slide-out {
+    animation: fadeSlideOut 0.3s ease-in forwards;
+  }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeSlideOut {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(20px); }
+  }
+</style>
+
+<script>
+  const waBtn = document.getElementById("waButton");
+
+  window.addEventListener("DOMContentLoaded", () => {
+    waBtn.classList.remove("hidden");
+    waBtn.classList.add("fade-slide-in");
+  });
+</script>
+
+
+<!-- Back to Top -->
+<button id="backToTop" 
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'});" 
+        class="hidden fixed bottom-6 left-6 bg-teal-500 hover:bg-teal-600 text-white 
+               w-12 h-12 rounded-full flex items-center justify-center shadow-lg 
+               transition z-50 opacity-0 translate-y-6">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+  </svg>
+</button>
+
+<style>
+  .fade-slide-in {
+    animation: fadeSlideIn 0.4s ease-out forwards;
+  }
+  .fade-slide-out {
+    animation: fadeSlideOut 0.3s ease-in forwards;
+  }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeSlideOut {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(20px); }
+  }
+</style>
+
+<script>
+  const backToTopBtn = document.getElementById("backToTop");
+  const heroSection = document.getElementById("homepage");
+
+  let isVisible = false;
+
+  window.addEventListener("scroll", () => {
+    const heroBottom = heroSection.offsetHeight; 
+
+    if (window.scrollY > heroBottom) {
+      if (!isVisible) {
+        backToTopBtn.classList.remove("hidden", "fade-slide-out");
+        backToTopBtn.classList.add("fade-slide-in");
+        isVisible = true;
+      }
+    } else {
+      if (isVisible) {
+        backToTopBtn.classList.remove("fade-slide-in");
+        backToTopBtn.classList.add("fade-slide-out");
+        setTimeout(() => {
+          backToTopBtn.classList.add("hidden");
+        }, 300); // waktu sama dengan durasi animasi out
+        isVisible = false;
+      }
+    }
+  });
+</script>
+
+
+  
+    </section>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuBtn && mobileMenu) {
+            let menuOpen = false;
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                if (!menuOpen) {
+                    mobileMenu.classList.add('show');
+                    mobileMenu.classList.remove('pointer-events-none');
+                } else {
+                    mobileMenu.classList.remove('show');
+                    mobileMenu.classList.add('pointer-events-none');
+                }
+                menuOpen = !menuOpen;
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('backdrop-blur-xl');
+            } else {
+                navbar.classList.remove('backdrop-blur-xl');
+            }
+        });
+
+ // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+
+        // Scroll reveal animation
+        const scrollRevealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    scrollRevealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            scrollRevealObserver.observe(el);
+        });
+
+        // Navbar animation on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.remove('opacity-0', '-translate-y-20');
+            navbar.classList.add('opacity-100', 'translate-y-0');
+        });
+
+   const phoneObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      phoneObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.phone-reveal').forEach(el => {
+  phoneObserver.observe(el);
+});
+
+const serviceCards = document.querySelectorAll('.service-card');
+
+const serviceObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      serviceCards.forEach((card, index) => {
+        if (entry.target === card) {
+          setTimeout(() => {
+            card.classList.add('show');
+          }, index * 200); // jeda 200ms per card
+        }
+      });
+      serviceObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+serviceCards.forEach(el => {
+  serviceObserver.observe(el);
+});
+
+serviceCards.forEach(card => {
+  const img = card.querySelector('img');
+  const title = card.querySelector('h3');
+  const listItems = card.querySelectorAll('li'); // ambil semua li di dalam card
+
+  card.addEventListener('mouseenter', () => {
+    card.style.transform = 'translateY(-5px) scale(1.02)';
+    card.style.transition = 'transform 0.3s ease-out, box-shadow 0.3s ease-out';
+
+    if (img) img.style.transform = 'scale(1.05)';
+    if (title) title.style.color = '#1dd1a1';
+
+    // animasi tiap list item
+    listItems.forEach((li, index) => {
+      li.style.transform = 'translateX(5px)';  // geser ke kanan
+      li.style.transition = `transform 0.3s ease-out ${index * 50}ms, color 0.3s ease-out`;
+      li.style.color = '#1dd1a1';
+    });
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'translateY(0) scale(1)';
+    card.style.transition = 'transform 0.6s ease-out, box-shadow 0.4s ease-out';
+
+    if (img) img.style.transform = 'scale(1)';
+    if (title) title.style.color = '';
+
+    listItems.forEach((li) => {
+      li.style.transform = 'translateX(0)';
+      li.style.transition = 'transform 0.6s ease-out, color 0.6s ease-out';
+      li.style.color = '';
+    });
+  });
+});
+
+    
+    </script>
+
+</body>
+</html>
