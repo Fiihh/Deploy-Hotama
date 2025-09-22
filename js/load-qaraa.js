@@ -1,12 +1,14 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const sections = [
-    { id: "navbar", file: "qaraa-section/navbar.html" },
-    { id: "homepage", file: "qaraa-section/home.html" },
-    { id: "about", file: "qaraa-section/about.html" },
-    { id: "technical", file: "qaraa-section/technical.html" },
-    { id: "cta", file: "qaraa-section/cta.html" },
-    { id: "footer", file: "qaraa-section/footer.html" },
-  ];
+ const sections = [
+  { id: "navbar", file: "qaraa-section/navbar.html" },
+  { id: "homepage", file: "qaraa-section/home.html" },
+  { id: "about", file: "qaraa-section/about.html" },
+  { id: "technical", file: "qaraa-section/technical.html" },
+  { id: "cta", file: "qaraa-section/cta.html" },
+  { id: "footer", file: "qaraa-section/footer.html" },
+  { id: "floating", file: "qaraa-section/buttons.html" },
+];
+
 
   const promises = sections.map(async (section) => {
     const container = document.getElementById(section.id);
@@ -189,4 +191,47 @@ function initMainScript() {
       });
     });
   });
+
+  // Floating Buttons (WA + Back to Top)
+const waBtn = document.getElementById("waButton");
+const backToTopBtn = document.getElementById("backToTop");
+const heroSection = document.getElementById("homepage");
+let isBackTopVisible = false;
+
+// WhatsApp button muncul langsung
+if (waBtn) {
+  setTimeout(() => {
+    waBtn.classList.remove("hidden");
+    waBtn.classList.add("fade-slide-in");
+  }, 200);
+}
+
+// Back to Top button muncul setelah scroll melewati homepage
+if (backToTopBtn && heroSection) {
+  window.addEventListener("scroll", () => {
+    const heroBottom = heroSection.offsetHeight;
+
+    if (window.scrollY > heroBottom) {
+      if (!isBackTopVisible) {
+        backToTopBtn.classList.remove("hidden", "fade-slide-out");
+        backToTopBtn.classList.add("fade-slide-in");
+        isBackTopVisible = true;
+      }
+    } else {
+      if (isBackTopVisible) {
+        backToTopBtn.classList.remove("fade-slide-in");
+        backToTopBtn.classList.add("fade-slide-out");
+        setTimeout(() => {
+          backToTopBtn.classList.add("hidden");
+        }, 300);
+        isBackTopVisible = false;
+      }
+    }
+  });
+
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
 }
