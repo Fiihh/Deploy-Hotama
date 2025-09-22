@@ -1,14 +1,15 @@
 document.addEventListener("DOMContentLoaded", async () => {
- const sections = [
-  { id: "navbar", file: "qaraa-section/navbar.html" },
-  { id: "homepage", file: "qaraa-section/home.html" },
-  { id: "about", file: "qaraa-section/about.html" },
-  { id: "technical", file: "qaraa-section/technical.html" },
-  { id: "cta", file: "qaraa-section/cta.html" },
-  { id: "footer", file: "qaraa-section/footer.html" },
-  { id: "floating", file: "qaraa-section/buttons.html" },
-];
+  const sections = [
+    { id: "navbar", file: "qaraa-section/navbar.html" },
+    { id: "homepage", file: "qaraa-section/home.html" },
+    { id: "about", file: "qaraa-section/about.html" },
+    { id: "technical", file: "qaraa-section/technical.html" },
+    { id: "cta", file: "qaraa-section/cta.html" },
+    { id: "footer", file: "qaraa-section/footer.html" },
+    { id: "floating", file: "qaraa-section/buttons.html" },
+  ];
 
+  let errorShown = false; // biar error overlay hanya muncul sekali
 
   const promises = sections.map(async (section) => {
     const container = document.getElementById(section.id);
@@ -22,22 +23,59 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.log(`✅ Loaded: ${section.file}`);
     } catch (err) {
       console.error(`❌ Error loading ${section.file}:`, err);
-      container.innerHTML = `
-        <div style="color: red; padding: 20px; border: 1px solid red;">
-          Error loading ${section.file}: ${err.message}
-        </div>
-      `;
+
+      if (!errorShown) {
+        const globalError = document.getElementById("global-error");
+        if (globalError) {
+          globalError.innerHTML = `
+          <div style="
+                position:fixed;inset:0;z-index:9999;
+                display:flex;align-items:center;justify-content:center;
+                background:rgba(0,0,0,0.85);
+              ">
+                <div style="
+                  background:#1f1f1f;
+                  border:1px solid #f87171;
+                  border-radius:0.75rem;
+                  padding:2rem;
+                  max-width:400px;
+                  text-align:center;
+                ">
+                  <img src="https://i.pinimg.com/736x/95/c0/a7/95c0a750cf615efb7d1e7386840df1eb.jpg"
+                       alt="Error Illustration"
+                       style="width:400px;height:auto;margin-bottom:1rem;" />
+                  <h2 style="color:#ef4444;font-size:1.25rem;font-weight:bold;margin-bottom:0.5rem;">
+                    Error Loading Page
+                  </h2>
+                  <p style="color:#fecaca;font-size:0.95rem;margin-bottom:1rem;">
+                    Failed to fetch
+                  </p>
+                 <button onclick="location.href='vscode://';" style="
+                background:#2791F5;
+                color:white;
+                padding:0.5rem 1rem;
+                border-radius:0.375rem;
+                font-weight:500;
+">
+  Open In VSCode
+</button>
+
+                </div>
+              </div>
+            `;
+        }
+        errorShown = true;
+      }
     }
   });
 
-  // Tunggu semua section selesai load
   await Promise.all(promises);
-  console.log("✅ Semua section berhasil dimuat");
 
-  // Jalankan script utama
-  initMainScript();
+  if (!errorShown) {
+    console.log("✅ Semua section berhasil dimuat");
+    initMainScript();
+  }
 });
-
 function initMainScript() {
   console.log("✅ Main script initialized");
 
