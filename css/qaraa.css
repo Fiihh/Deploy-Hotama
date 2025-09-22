@@ -361,3 +361,22 @@
   from { opacity: 0; transform: translateY(50px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* Floating Buttons Animation */
+.fade-slide-in {
+  animation: fadeSlideIn 0.4s ease-out forwards;
+}
+
+.fade-slide-out {
+  animation: fadeSlideOut 0.3s ease-in forwards;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(20px); }
+}
