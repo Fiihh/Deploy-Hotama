@@ -1,0 +1,915 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hotama</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/png" href="./assets/icon.png">
+        
+        <style>
+
+            /* Work Detail Grid Layout */
+#work-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+}
+
+@media (max-width: 640px) {
+    #work-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    #work-detail-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    #work-detail-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+}
+
+            :root {
+                --teal-custom: #1dd1a1;
+                --lawut: #067079;
+                --dark-bg: #081013;
+                --dark-card: #1a2332;
+                --lawut-dark: #013a3d;
+            }
+            
+            body {
+                font-family: 'Inter', sans-serif;
+                background: linear-gradient(to bottom, #0f172a, #000);
+                color: white;
+                scroll-behavior: smooth;
+            }
+            
+            .glassmorphism {
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                background: linear-gradient(135deg, rgba(255, 255, 255), rgba(255,255,255));
+                border-radius: 9999px;
+                margin: 1rem auto;
+                max-width: fit-content;
+                padding: 0.75rem 2rem;
+            }
+
+            .hero-gradient {
+                background: linear-gradient(135deg, #0f1419 0%, #1a2332ff 100%);
+            }
+            
+            .card-gradient {
+                background: linear-gradient(135deg, #1a2332 0%, #0f1419 100%);
+            }
+            
+            .text-gradient {
+                background: linear-gradient(to bottom, white, #067079, white);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            }
+            
+            .service-card {
+                transition: transform 0.6s ease-out, box-shadow 0.4s ease-out;
+                width: 100%;
+                max-width: 100%;
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            .service-card.show {
+                opacity: 1;
+                transform: translateY(0);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            }
+
+            .service-card:hover {
+                box-shadow: 0 20px 40px rgba(29, 209, 161, 0.1);
+            }
+
+            .service-card img {
+                width: 72px;
+                height: auto;
+                transition: transform 0.6s ease-out, color 0.6s ease-out, opacity 0.6s ease-out;
+            }
+
+            .service-card h3 {
+                font-size: 1.31rem;
+                transition: transform 0.6s ease-out, color 0.6s ease-out, opacity 0.6s ease-out;
+            }
+
+            .service-card p {
+                font-size: 1.02rem;
+                transition: transform 0.6s ease-out, color 0.6s ease-out, opacity 0.6s ease-out;
+            }
+
+            #mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+#mobile-menu.show {
+  max-height: 100vh; /* tinggi penuh layar */
+  opacity: 1;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+
+            
+
+            .scroll-smooth {
+                scroll-behavior: smooth;
+            }
+            
+            .typing-animation {
+                border-right: 2px solid #1dd1a1;
+                animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+            }
+            
+            .logo-scroll-container {
+                overflow: hidden;
+                position: relative;
+                width: 75%;
+                mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            }
+            
+            .logo-scroll-track {
+                display: flex;
+                animation: scroll 100s linear infinite;
+                width: calc(200%);
+            }
+
+            .logo-group {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                width: 25%;
+                flex-shrink: 0;
+            }
+            
+            .logo-item {
+                width: 80px;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0.7;
+                transition: opacity 0.3s ease;
+                filter: grayscale(100%);
+            }
+            
+            .logo-item:hover {
+                opacity: 1;
+                filter: grayscale(0%);
+            }
+            
+            .logo-item img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+            
+            @keyframes scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+            
+            @keyframes typing {
+                from { width: 0 }
+                to { width: 100% }
+            }
+            
+            @keyframes blink {
+                from, to { border-color: transparent }
+                50% { border-color: #1dd1a1 }
+            }
+
+            .marquee {
+                display: flex;
+                block-size: var(--marquee-item-height);
+                margin-block: var(--marquee-item-height);
+                position: relative;
+                overflow-x: hidden;
+                mask-image: linear-gradient(
+                    to right,
+                    hsl(0 0% 0% / 0),
+                    hsl(0 0% 0% / 1) 50%,
+                    hsl(0 0% 0% / 1) 25%,
+                    hsl(0 0% 0% / 0)
+                );
+            }
+
+            .marquee--8 {
+                --marquee-item-width: 150px;
+                --marquee-item-height: 100px;
+                --marquee-duration: 36s;
+                --marquee-items: 8;
+            }
+
+            .marquee__item {
+                --marquee-item-offset: max(
+                    calc(var(--marquee-item-width) * var(--marquee-items)),
+                    calc(100% + var(--marquee-item-width))
+                );
+                --marquee-delay: calc(var(--marquee-duration) / var(--marquee-items) * (var(--marquee-items) - var(--marquee-item-index)) * -1);
+                position: absolute;
+                inset-inline-start: var(--marquee-item-offset);
+                transform: translateX(-50%);
+                animation: go linear var(--marquee-duration) var(--marquee-delay, 0s) infinite;
+            }
+
+            .marquee__item:nth-child(4n) {
+                border-top-right-radius: 1rem;
+            }
+
+            .marquee__item:nth-child(4n + 1) {
+                border-bottom-right-radius: 1rem;
+            }
+
+            .marquee__item:nth-child(4n + 2) {
+                border-bottom-left-radius: 1rem;
+            }
+
+            .marquee__item:nth-child(4n + 3) {
+                border-top-left-radius: 1rem;
+            }
+
+            .marquee--8 .marquee__item:nth-of-type(1) { --marquee-item-index: 1; }
+            .marquee--8 .marquee__item:nth-of-type(2) { --marquee-item-index: 2; }
+            .marquee--8 .marquee__item:nth-of-type(3) { --marquee-item-index: 3; }
+            .marquee--8 .marquee__item:nth-of-type(4) { --marquee-item-index: 4; }
+            .marquee--8 .marquee__item:nth-of-type(5) { --marquee-item-index: 5; }
+            .marquee--8 .marquee__item:nth-of-type(6) { --marquee-item-index: 6; }
+            .marquee--8 .marquee__item:nth-of-type(7) { --marquee-item-index: 7; }
+            .marquee--8 .marquee__item:nth-of-type(8) { --marquee-item-index: 8; }
+
+            @keyframes go {
+                to { inset-inline-start: calc(var(--marquee-item-width) * -1); }
+            }
+            
+            .fade-slide {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.4s ease, transform 0.4s ease;
+            }
+
+            .fade-slide.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .fade-slide.hide {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            
+            .scroll-reveal {
+                opacity: 0;
+                transform: translateY(24px);
+                transition: all 0.6s ease-out;
+            }
+
+            .scroll-reveal.show {   
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .about-us-img {
+                overflow: hidden;
+                border-radius: 1rem;
+            }
+
+            .about-us-img img {
+                width: 100%;
+                height: auto;
+                display: block;
+                transition: transform 0.6s ease-out;
+            }
+
+            .about-us-img:hover img {
+                transform: scale(1.02);
+            }
+
+            /* Modal Styles */
+    .modal-overlay {
+        z-index: 1000;
+    }
+
+    .bg-dark-card {
+        scrollbar-width: thin;
+        scrollbar-color: #1dd1a1 #1a2332;
+    }
+
+    .bg-dark-card::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .bg-dark-card::-webkit-scrollbar-track {
+        background: #1a2332;
+        border-radius: 0 0 1rem 0;
+    }
+
+    .bg-dark-card::-webkit-scrollbar-thumb {
+        background: #1dd1a1;
+        border-radius: 3px;
+    }
+
+    /* Smooth transitions */
+    .modal-overlay, .bg-dark-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+            
+            @media (max-width: 768px) {
+                #navbar {
+                    max-width: 370px;
+                    width: 100%;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                }
+            }
+            
+            @keyframes slideUpFade {
+                0% { opacity: 0; transform: translateY(20px); }
+                100% { opacity: 1; transform: translateY(0); }
+            }
+            
+            .animate-slide-up-fade {
+                animation: slideUpFade 0.6s ease-out forwards;
+            }
+
+            @keyframes slide {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); } 
+            }
+            
+            .animate-slide {
+                animation: slide 40s linear infinite;
+            }
+            
+            /* Trusted By Section Tweaks */
+            #trusted-by {
+                padding-top: 2rem;
+                padding-bottom: 3rem;
+            }
+
+            #trusted-by .inline-flex {
+                margin-bottom: 1rem !important;
+            }
+
+            #trusted-by-marquee {
+                margin-top: 0.1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+            }
+
+                    /* Responsive Design Improvements */
+            @media (max-width: 640px) {
+                #navbar {
+                    max-width: 95%;
+                    padding: 0.75rem 1rem;
+                }
+                
+                .hero-gradient {
+                    min-height: 85vh;
+                }
+                
+                #hero-title {
+                    font-size: 2.5rem;
+                    line-height: 1.2;
+                }
+                
+                #hero-subtitle {
+                    font-size: 1.125rem;
+                    line-height: 1.5;
+                }
+                
+                .service-card {
+                    padding: 1.5rem;
+                    margin: 0.5rem 0;
+                }
+                
+                .testimonial-card {
+                    width: 280px;
+                    height: 260px;
+                    margin: 0 0.5rem;
+                }
+                
+                #work-grid,
+                #work-detail-grid {
+                    grid-template-columns: 1fr;
+                    gap: 2rem;
+                    padding: 0 1rem;
+                }
+                
+                .project-item img,
+                .project-detail-card img {
+                    height: 200px;
+                }
+            }
+
+            @media (min-width: 641px) and (max-width: 768px) {
+                #hero-title {
+                    font-size: 3.5rem;
+                }
+                
+                #work-grid,
+                #work-detail-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 1.5rem;
+                }
+                
+                .service-card {
+                    padding: 2rem;
+                }
+            }
+            #work,
+#work-detail {
+  transition: all 0.5s ease-in-out;
+  will-change: opacity, transform;
+}
+    
+
+            @media (min-width: 769px) and (max-width: 1024px) {
+                #work-grid,
+                #work-detail-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 2rem;
+                }
+            }
+
+            @media (min-width: 1025px) {
+                #work-grid,
+                #work-detail-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 2rem;
+                }
+            }
+
+            /* Mobile Menu Improvements */
+            @media (max-width: 768px) {
+                #mobile-menu {
+                    padding-left: 1.5rem;
+                    padding-right: 1.5rem;
+                }
+                
+                #mobile-menu nav {
+                    gap: 1.5rem;
+                }
+                
+                #mobile-menu a {
+                    font-size: 1.1rem;
+                    padding: 0.5rem 0;
+                }
+            }
+
+            /* Modal Responsive Improvements */
+            @media (max-width: 640px) {
+                .modal-overlay {
+                    padding: 1rem;
+                }
+                
+                .bg-dark-card {
+                    max-height: 85vh;
+                }
+                
+                .modal-overlay .text-3xl {
+                    font-size: 1.75rem;
+                }
+                
+                .modal-overlay .text-xl {
+                    font-size: 1.125rem;
+                }
+                
+                .modal-overlay .p-6 {
+                    padding: 1.5rem;
+                }
+                
+                .modal-overlay .grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .modal-overlay .flex-col {
+                    flex-direction: column;
+                }
+                
+                .modal-overlay .h-64 {
+                    height: 200px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                #hero-title {
+                    font-size: 2rem;
+                }
+                
+                #hero-subtitle {
+                    font-size: 1rem;
+                }
+                
+                .hero-cta-container {
+                    flex-direction: column;
+                    gap: 1rem;
+                }
+                
+                .service-card {
+                    padding: 1.25rem;
+                }
+                
+                .testimonial-card {
+                    width: 260px;
+                    height: 240px;
+                    padding: 1.25rem;
+                }
+            }
+
+            /* Touch Device Improvements */
+            @media (hover: none) {
+                .service-card:hover {
+                    transform: none;
+                    box-shadow: none;
+                }
+                
+                .project-item:hover,
+                .project-detail-card:hover {
+                    transform: none;
+                }
+                
+                .project-item img:hover,
+                .project-detail-card img:hover {
+                    transform: none;
+                }
+            }
+
+            /* High DPI Screens */
+            @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+                .service-card img,
+                .project-item img,
+                .project-detail-card img {
+                    image-rendering: -webkit-optimize-contrast;
+                }
+            }
+
+            /* Landscape Mobile */
+            @media (max-height: 500px) and (orientation: landscape) {
+                .hero-gradient {
+                    min-height: 100vh;
+                    padding: 2rem 0;
+                }
+                
+                .modal-overlay {
+                    padding: 0.5rem;
+                }
+                
+                .bg-dark-card {
+                    max-height: 95vh;
+                }
+            }
+
+            /* Safe Area Insets for Notch Phones */
+            @supports(padding: max(0px)) {
+                .hero-gradient,
+                #services,
+                #about,
+                #work,
+                #testi,
+                #cta {
+                    padding-left: max(1rem, env(safe-area-inset-left));
+                    padding-right: max(1rem, env(safe-area-inset-right));
+                }
+                
+                #navbar {
+                    margin-left: max(0px, env(safe-area-inset-left));
+                    margin-right: max(0px, env(safe-area-inset-right));
+                }
+            }
+
+            @media (max-width: 768px) {
+                .scroll-mt-mobile {
+                    scroll-margin-top: 8rem;
+                }
+            }
+
+            /* Testimonial Styles */
+            .testimonial-card {
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 1rem;
+                padding: 1.5rem;
+                height: 280px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                flex-shrink: 0;
+                width: 320px;
+                margin: 0 0.75rem;
+                transition: all 0.3s ease;
+            }
+            
+            .testimonial-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(29, 209, 161, 0.15);
+            }
+            
+            .testimonial-track {
+                display: flex;
+                animation: scroll-testimonial 40s linear infinite;
+                width: max-content;
+            }
+            
+            @keyframes scroll-testimonial {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+            
+            .testimonial-container {
+                overflow: hidden;
+                position: relative;
+                padding: 1rem 0;
+            }
+            
+            .testimonial-shadow {
+                position: absolute;
+                top: 0;
+                height: 100%;
+                width: 100px;
+                z-index: 10;
+                pointer-events: none;
+            }
+            
+            .testimonial-shadow-left {
+                left: 0;
+                background: linear-gradient(to right, var(--dark-bg), transparent);
+            }
+            
+            .testimonial-shadow-right {
+                right: 0;
+                background: linear-gradient(to left, var(--dark-bg), transparent);
+            }
+        </style>
+        
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            'teal-custom': '#1dd1a1',
+                            'lawut': '#067079',
+                            'dark-bg': '#081013',
+                            'dark-card': '#1a2332',
+                            'lawut-dark': '#013a3d',
+                        },
+                        fontFamily: {
+                            'inter': ['Inter'],
+                            'sans': ['sans-serif'],
+                            'poppins': ['Poppins', 'sans-serif'],
+                        },
+                        backdropBlur: {
+                            'xs': '2px',
+                        },
+                        animation: {
+                            'scroll': 'scroll 20s linear infinite',
+                        },
+                        keyframes: {
+                            'scroll': {
+                                from: { transform: 'translateX(0)' },
+                                to: { transform: 'translateX(-100%)' },
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
+    </head>
+
+    <body class="bg-gradient-to-b from-slate-900 to-black text-white font-inter scroll-smooth">
+        
+        <!-- Main Navigation -->
+        <nav id="navbar" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl px-3 sm:px-5 h-18 py-3 bg-black/20 backdrop-blur-lg rounded-[32px] border border-white/20 shadow-md opacity-0 -translate-y-20 transition-all duration-700 ease-out ">
+            <div class="relative flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <img src="assets/hotamalogo.png" alt="hotama" class="w-[120px] h-auto ml-3" />
+                </div>
+                <div id="navbar-links" class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center space-x-10 text-sm font-medium text-white "></div>
+                <div id="navbar-cta-desktop" class="hidden md:flex items-center"></div>
+                
+                <!-- Mobile Hamburger Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-teal-400 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" 
+                class="md:hidden max-h-0 opacity-0 scale-y-95 overflow-hidden 
+                        transition-all duration-300 ease-in-out origin-top">
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-gradient min-h-[75vh] flex items-center justify-center px-6 py-20 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-lawut via-lawut-dark to-dark-bg"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <h2 id="hero-title" class="text-6xl font-semibold font-inter mb-2 bg-gradient-to-b from-white to-lawut via-white text-transparent bg-clip-text box-border size-50 border-1 p-2 scroll-reveal"></h2>
+                <p id="hero-subtitle" class="text-2xl text-gray-500 md:text-xl mb-10 font-inter max-w-4xl scroll-reveal"></p>
+                <div id="hero-cta-container" class="flex flex-wrap gap-4 justify-center items-center scroll-reveal"></div>
+            </div>
+        </section> 
+
+        <!-- Trusted By Section -->
+        <section id="trusted-by" class="px-6 py-20 bg-dark-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="inline-flex items-center gap-2 px-4 py-2 mb-8">
+                    <span id="trusted-by-tag" class="font-medium text-gray-300"></span>
+                </div>
+                <div id="trusted-by-marquee" class="marquee marquee--8 relative"></div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="px-6 py-[98px] bg-dark-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-teal-500 text-teal-400 bg-teal-500/10 w-max mx-auto mb-4 scroll-reveal">
+                        <span class="w-2.5 h-2.5 bg-teal-400 rounded-full"></span>
+                        <span id="services-tag" class="text-sm font-medium"></span>
+                    </div>
+                    <h2 id="services-title" class="text-5xl font-semibold font-inter mb-2 bg-gradient-to-b from-white to-lawut via-white text-transparent bg-clip-text box-border size-50 border-1 p-2 scroll-reveal"></h2>
+                </div>
+                <div id="services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-2 sm:px-8 lg:px-20"></div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-[20px] bg-dark-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 ">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center text-center lg:text-left">
+                    <div class="order-1 lg:order-1">
+                        <div class="about-us-img rounded-2xl p-3 backdrop-blur-sm scroll-reveal mx-auto sm:w-auto w-full">
+                            <img id="about-image" src="" alt="About Us" class="rounded-2xl w-full h-auto">
+                        </div>
+                    </div>
+                    <div class="order-2 lg:order-2">
+                        <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-teal-500 text-teal-400 bg-teal-500/10 w-max mx-auto mb-4 scroll-reveal">
+                            <span class="w-2.5 h-2.5 bg-teal-400 rounded-full"></span>
+                            <span id="about-tag" class="text-sm font-medium"></span>
+                        </div>
+                        <h2 id="about-title" class="text-[39px] font-semibold font-inter mb-2 bg-gradient-to-b from-white to-lawut via-white text-transparent bg-clip-text box-border size-50 border-1 p-2 scroll-reveal"></h2>
+                        <p id="about-content" class="text-gray-300 text-lg leading-relaxed scroll-reveal"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Section -->
+        <section id="work" class="py-[90px] bg-dark-bg scroll-mt-32 md:scroll-mt-40 flex flex-col items-center text-center">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-10">
+                    <!-- Tag -->
+                    <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-teal-500 text-teal-400 bg-teal-500/10 w-max mx-auto mb-4 scroll-reveal">
+                        <span class="w-2.5 h-2.5 bg-teal-400 rounded-full"></span>
+                        <span id="work-tag" class="text-sm font-medium"></span>
+                    </div>
+
+                    <!-- Title -->
+                    <h2 id="work-title"
+                        class="text-5xl font-semibold font-inter mb-2 bg-gradient-to-b from-white to-lawut via-white text-transparent bg-clip-text box-border size-50 border-1 p-2 scroll-reveal">
+                    </h2>
+
+                    <!-- Description -->
+                    <p id="work-description"
+                    class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mt-4 mb-10 scroll-reveal text-center">
+                    </p>
+                </div>
+
+                <div id="work-grid"
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-20 justify-items-center">
+                </div>
+
+                <!-- Button -->
+                <div class="mt-6 scroll-reveal flex justify-center items-center gap-4 mb-10 py-5 ">
+                    <button id="toggleProjectsBtn"
+                            class="px-6 py-2 rounded-full border border-teal-500 text-teal-400 hover:bg-cyan-500 hover:text-white transition duration-300">
+                    See More
+                    </button>
+                </div>
+            </div>
+        </section>
+
+            <!-- Work Detail Section (Hidden by default) -->
+       <!-- Work Detail Section (Hidden by default) -->
+<section id="work-detail" style="display: none;" class="py-20 bg-dark-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-teal-500 text-teal-400 bg-teal-500/10 w-max mx-auto mb-4">
+                <span class="w-2.5 h-2.5 bg-teal-400 rounded-full"></span>
+                <span class="text-sm font-medium">Our Portfolio</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-semibold font-inter mb-4 bg-gradient-to-b from-white to-lawut via-white text-transparent bg-clip-text">
+                All Projects
+            </h2>
+        </div>
+
+        <!-- Projects Grid -->
+        <div id="work-detail-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Projects will be loaded here by JavaScript -->
+        </div>
+
+        <!-- Back Button -->
+        <div class="text-center">
+            <button id="backToWorkBtn" 
+                    class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-teal-500 text-teal-400 hover:bg-teal-500 hover:text-white transition-all duration-300 group">
+                <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to Main Projects
+            </button>
+        </div>
+    </div>
+</section>
+        <!-- Testimonials Section -->
+        <section id="testi" class="bg-dark-bg text-white py-[84px] px-6 overflow-hidden relative">
+            <div class="max-w-7xl mx-auto mb-18">
+                <div class="text-center mb-12">
+                    <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-teal-500 text-teal-400 bg-teal-500/10 w-max mx-auto mb-4 scroll-reveal">
+                        <span class="w-2.5 h-2.5 bg-teal-400 rounded-full"></span>
+                        <span id="testi-tag" class="text-sm font-medium"></span>
+                    </div>
+                    <h2 id="testi-title" class="text-5xl font-semibold font-inter mb-2 bg-gradient-to-b from-white to-lawut via-white text-transparent bg-clip-text box-border size-50 border-1 p-2 scroll-reveal"></h2>
+                </div>
+                <div class="testimonial-container relative">
+                    <div class="testimonial-shadow testimonial-shadow-left"></div>
+                    <div class="testimonial-shadow testimonial-shadow-right"></div>
+                    <div id="testimonial-track" class="testimonial-track"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="cta" class="bg-dark-bg py-20">
+            <div class="bg-gradient-to-b from-[#062b2d] to-[#081013] rounded-3xl mx-1 sm:mx-6 lg:mx-20 text-center py-12 sm:py-16 px-4 sm:px-8 lg:px-12 scroll-reveal">
+                <div class="mb-6 flex justify-center">
+                    <img src="assets/hotamalogo.png" alt="Hotama Logo" class="w-30 h-12 object-contain">
+                </div>
+                <h2 id="cta-headline" class="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-6"></h2>
+                <a id="cta-button" href="#" class="inline-block mt-4 bg-white text-dark-bg font-medium px-6 py-2 rounded-full hover:bg-[#00AEC2] hover:text-white transition-colors duration-300"></a>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer id="footer" class="bg-dark-bg text-gray-400 px-6 py-20">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 mb-6">
+                    <div class="scroll-reveal space-y-4">
+                        <img src="assets/hotamalogo.png" alt="Hotama Logo" class="w-[180px] h-auto mb-6">
+                        <p id="footer-description" class="text-sm leading-relaxed text-gray-300 max-w-sm"></p>
+                    </div>
+                    <div class="scroll-reveal">
+                        <h3 class="text-white text-xl font-semibold mb-6">Quick Links</h3>
+                        <nav id="footer-links" class="space-y-3"></nav>
+                    </div>
+                    <div class="scroll-reveal">
+                        <h3 class="text-white text-xl font-semibold mb-6">Contact</h3>
+                        <div class="space-y-4"></div>
+                    </div>
+                </div>
+                <div class="border-t border-gray-700 pt-8 text-center">
+                    <p class="text-sm text-gray-500">&copy; 2025 HOTAMA. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Project Detail Pages Container -->
+        <div id="navbar-detail"></div>
+        <div id="homepage"></div>
+        <div id="about"></div>
+        <div id="technical"></div>
+        <div id="cta"></div>
+        <div id="footer"></div>
+        <div id="floating"></div>
+        <div id="global-error"></div>
+        <div id="work-detail"></div>
+        <div id="footer-detail"></div>
+
+        <script src="script.js"></script>
+    </body>
+    </html>
