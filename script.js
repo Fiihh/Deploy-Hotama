@@ -118,7 +118,7 @@ const ALL_DATA = {
                     "category": "E-Catalogue Platform", 
                     "image": "assets/Siupin - E-catalogue Platform.png", 
                     "link": "#", 
-                    "color_class": "bg-yellow-600/60",
+                    "color_class": "bg-[#68311c]/70",
                     "isHidden": false
                 },
 
@@ -128,7 +128,7 @@ const ALL_DATA = {
                     "category": "Online Cashback Service", 
                     "image": "assets/Flip Deals - Online Cashback Service.png", 
                     "link": "#", 
-                    "color_class": "bg-yellow-600/60", 
+                    "color_class": "bg-[#8b826c]/70", 
                     "isHidden": false
                 },
 
@@ -140,7 +140,7 @@ const ALL_DATA = {
                     "category": "Lippo Community Living System", 
                     "image": "assets/Leap App - Lippo Community Living System.png", 
                     "link": "#", 
-                    "color_class": "bg-indigo-600/60", 
+                    "color_class": "bg-[#655a3c]/70", 
                     "isHidden": false
                 },
                   {
@@ -149,7 +149,7 @@ const ALL_DATA = {
                     "category": "HR Management", 
                     "image": "assets/YPI App - Human Resource Management.png", 
                     "link": "#", 
-                    "color_class": "bg-blue-600/60",
+                    "color_class": "bg-[#85b77d]/70",
                     "isHidden": false
                 },
                  {
@@ -158,7 +158,7 @@ const ALL_DATA = {
                     "category": "Digital Media Platform", 
                     "image": "assets/El John Media App - Digital Media Platform.png", 
                     "link": "#", 
-                    "color_class": "bg-red-600/60",
+                    "color_class": "bg-[#4c7aa4]/70",
                     "isHidden": false
                 },
     {
@@ -167,7 +167,7 @@ const ALL_DATA = {
                     "category": "Pawn and Accounting Information System", 
                     "image": "assets/Sadana App - Pawn and Accounting Information System.png", 
                     "link": "#", 
-                    "color_class": "bg-amber-600/60",
+                    "color_class": "bg-[#67b18d]/70",
                     "isHidden": false
                 },//
                   {
@@ -176,7 +176,7 @@ const ALL_DATA = {
                     "category": "Cross-border Payment Platform ", 
                     "image": "assets/Flip Globe - Cross-border Payment Platform.png", 
                     "link": "#", 
-                    "color_class": "bg-sky-600/60",
+                    "color_class": "bg-[#779190]/70",
                     "isHidden": true
                 },
 
@@ -186,7 +186,7 @@ const ALL_DATA = {
                     "category": "Sales Management", 
                     "image": "assets/Lippo Sales - Sales Management System.png", 
                     "link": "#", 
-                    "color_class": "bg-blue-600/60",
+                    "color_class": "bg-[#8b7d7d]/70",
                     "isHidden": true
                 },
 
@@ -197,7 +197,7 @@ const ALL_DATA = {
                     "category": "Point of Sale", 
                     "image": "assets/Hevy Beauty Care - Point of Sale.png", 
                     "link": "#", 
-                    "color_class": "bg-pink-600/60",
+                    "color_class": "bg-[#988188]/70",
                     "isHidden": true
                 },
 
@@ -208,7 +208,7 @@ const ALL_DATA = {
                     "category": "HR Management", 
                     "image": "assets/Pegasus App - Human Resource Management.png", 
                     "link": "#", 
-                    "color_class": "bg-cyan-600/60",
+                    "color_class": "bg-[#2683de]/70",
                     "isHidden": true
                 },
 
@@ -219,7 +219,7 @@ const ALL_DATA = {
                     "category": "Zakat App", 
                     "image": "assets/BMI Masjid - Zakat App.png", 
                     "link": "#", 
-                    "color_class": "bg-purple-600/60",
+                    "color_class": "bg-[#b95aab]/70",
                     "isHidden": true
                 },
 
@@ -229,7 +229,7 @@ const ALL_DATA = {
                     "category": "Grocery App", 
                     "image": "assets/Belanja Smart - Grocery App.png", 
                     "link": "#", 
-                    "color_class": "bg-green-600/60",
+                    "color_class": "bg-[#6fb741]/70",
                     "isHidden": true
                 },
 
@@ -241,7 +241,7 @@ const ALL_DATA = {
                     "category": "Islamic Worship App", 
                     "image": "assets/Surau - Islamic Worship App.png", 
                     "link": "#", 
-                    "color_class": "bg-emerald-600/60",
+                    "color_class": "bg-[#292a28]/70",
                     "isHidden": true
                 },
 
@@ -251,7 +251,7 @@ const ALL_DATA = {
                     "category": "Sports Booking App", 
                     "image": "assets/Octo App - Sports Booking App.png", 
                     "link": "#", 
-                    "color_class": "bg-blue-600/60",
+                    "color_class": "bg-[#1f2237]/70",
                     "isHidden": true
                 },
  {
@@ -260,7 +260,7 @@ const ALL_DATA = {
                     "category": "Sales App", 
                     "image": "assets/Mulia Graha - Sales App.png", 
                     "link": "#", 
-                    "color_class": "bg-orange-600/60",
+                    "color_class": "bg-[#ab66c6]/70",
                     "isHidden": true
                 },
 
@@ -270,7 +270,7 @@ const ALL_DATA = {
                     "category": " Financial Information System", 
                     "image": "assets/Difis - Financial Information System.png", 
                     "link": "#", 
-                    "color_class": "bg-violet-600/60",
+                    "color_class": "bg-[#238a4f]/70",
                     "isHidden": true
                 },
 
@@ -280,7 +280,7 @@ const ALL_DATA = {
                     "category": " Finance Management System", 
                     "image": "assets/YPI - Finance Management System.png", 
                     "link": "#", 
-                    "color_class": "bg-slate-600/60",
+                    "color_class": "bg-[#3181fb]/70",
                     "isHidden": true
                 },
 
@@ -292,7 +292,7 @@ const ALL_DATA = {
                     "category": "Furniture Landing Web", 
                     "image": "assets/Maureno - Furniture Landing Web.png", 
                     "link": "#", 
-                    "color_class": "bg-amber-800/60", 
+                    "color_class": "bg-[#19150a]/70", 
                     "isHidden": true
                 },
                 {
@@ -301,7 +301,7 @@ const ALL_DATA = {
                     "category": "Stock Management System", 
                     "image": "assets/Hotways App - Stock Management System.png", 
                     "link": "#", 
-                    "color_class": "bg-red-600/60", 
+                    "color_class": "bg-[#b6353b]/70", 
                     "isHidden": true
                 },
                
@@ -838,7 +838,7 @@ function loadProjectDetail(projectName) {
 // Work detail loader  
 function loadWorkDetail() {
     try {
-        console.log('Loading work detail page...');
+        console.log('Loa    ding work detail page...');
         // Implementation for work-detail page
     } catch (error) {
         console.error('Work detail loading error:', error);
