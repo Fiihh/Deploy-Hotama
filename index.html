@@ -213,12 +213,13 @@
                 );
             }
 
-            .marquee--8 {
-                --marquee-item-width: 150px;
-                --marquee-item-height: 100px;
-                --marquee-duration: 36s;
-                --marquee-items: 8;
-            }
+           .marquee--8 {
+    --marquee-item-width: 250px; /* atur jarak antar logo */
+    --marquee-item-height: 100px;
+    --marquee-duration: 60s;
+    --marquee-items: 8;
+}
+
 
             .marquee__item {
                 --marquee-item-offset: max(
@@ -375,8 +376,11 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 2rem;
+                gap: 6rem;
             }
+            #trusted-by-marquee .marquee__item {
+    margin-inline: 6rem; /* atur jaraknya di sini */
+}
 
                     /* Responsive Design Improvements */
             @media (max-width: 640px) {
@@ -660,6 +664,35 @@
                 right: 0;
                 background: linear-gradient(to left, var(--dark-bg), transparent);
             }
+
+            /* Animasi untuk card work detail */
+.project-detail-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.project-detail-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animasi stagger untuk delay bertahap */
+.project-detail-card:nth-child(1) { transition-delay: 0.1s; }
+.project-detail-card:nth-child(2) { transition-delay: 0.2s; }
+.project-detail-card:nth-child(3) { transition-delay: 0.3s; }
+.project-detail-card:nth-child(4) { transition-delay: 0.4s; }
+.project-detail-card:nth-child(5) { transition-delay: 0.5s; }
+.project-detail-card:nth-child(6) { transition-delay: 0.6s; }
+.project-detail-card:nth-child(7) { transition-delay: 0.7s; }
+.project-detail-card:nth-child(8) { transition-delay: 0.8s; }
+.project-detail-card:nth-child(9) { transition-delay: 0.9s; }
+.project-detail-card:nth-child(10) { transition-delay: 1.0s; }
+.project-detail-card:nth-child(11) { transition-delay: 1.1s; }
+.project-detail-card:nth-child(12) { transition-delay: 1.2s; }
+.project-detail-card:nth-child(13) { transition-delay: 1.3s; }
+.project-detail-card:nth-child(14) { transition-delay: 1.4s; }
+.project-detail-card:nth-child(15) { transition-delay: 1.5s; }
         </style>
         
         <script>
@@ -830,21 +863,17 @@
         </div>
 
         <!-- Projects Grid -->
-        <div id="work-detail-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+           <div id="work-detail-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             <!-- Projects will be loaded here by JavaScript -->
         </div>
-
-        <!-- Back Button -->
+    </div>
+     <!-- Back Button -->
         <div class="text-center">
             <button id="backToWorkBtn" 
                     class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-teal-500 text-teal-400 hover:bg-teal-500 hover:text-white transition-all duration-300 group">
-                <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-                </svg>
-                Back to Main Projects
+                Collapse
             </button>
         </div>
-    </div>
 </section>
         <!-- Testimonials Section -->
         <section id="testi" class="bg-dark-bg text-white py-[84px] px-6 overflow-hidden relative">
