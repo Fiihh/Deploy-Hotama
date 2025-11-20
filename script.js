@@ -1631,12 +1631,6 @@ function showProjectDetailModal(projectId) {
                         </div>
 
                         
-                        <!-- CTA Buttons -->
-                        <div class="flex ${isMobile ? 'flex-col' : 'flex-col sm:flex-row'} gap-3">
-                            <button class="flex-1 border border-teal-500 text-teal-500 ${isMobile ? 'py-3' : 'py-4'} rounded-xl font-semibold hover:bg-teal-500 hover:text-white transition-colors close-modal ${isMobile ? 'text-sm' : ''}">
-                                Close Project
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
