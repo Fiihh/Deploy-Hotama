@@ -1125,7 +1125,7 @@ function showWorkDetail(allProjects) {
           <div class="group cursor-pointer transition-all duration-300 hover:scale-105 project-detail-card" data-project-id="${project.id}">
             <div class="bg-dark-card rounded-2xl overflow-hidden shadow-lg border border-white/10 hover:border-teal-500/30 transition-all duration-300 h-full">
               <div class="relative overflow-hidden">
-                <img src="${project.image}" alt="${project.title}" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div class="p-6">
