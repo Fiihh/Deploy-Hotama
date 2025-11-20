@@ -112,44 +112,72 @@ const ALL_DATA = {
             "title": "Our Previous Projects",
             "description": "",
             "projects": [
-                {
-                    "id": "BMI Masjid",
-                    "title": "BMI Masjid", 
-                    "category": "Zakat App", 
-                    "image": "assets/BMI Masjid - Zakat App.png", 
+               {
+                    "id": "siupin",
+                    "title": "Siupin", 
+                    "category": "E-Catalogue Platform", 
+                    "image": "assets/Siupin - E-catalogue Platform.png", 
                     "link": "#", 
-                    "color_class": "bg-purple-600/60",
-                    "isHidden": false
-                },
-
-                   {
-                    "id": "belanja",
-                    "title": "Belanja Smart", 
-                    "category": "Groceries App", 
-                    "image": "assets/Belanja Smart - Grocery App.png", 
-                    "link": "#", 
-                    "color_class": "bg-green-600/60",
+                    "color_class": "bg-yellow-600/60",
                     "isHidden": false
                 },
 
                  {
+                    "id": "flipdeals",
+                    "title": "Flip Deals", 
+                    "category": "Online Cashback Service", 
+                    "image": "assets/Flip Deals - Online Cashback Service.png", 
+                    "link": "#", 
+                    "color_class": "bg-yellow-600/60", 
+                    "isHidden": false
+                },
+
+              
+
+                 {
                     "id": "leapapp",
-                    "title": "Flip Leap App", 
-                    "category": "Community Livin", 
+                    "title": "Leap App", 
+                    "category": "Lippo Community Living System", 
                     "image": "assets/Leap App - Lippo Community Living System.png", 
                     "link": "#", 
                     "color_class": "bg-indigo-600/60", 
                     "isHidden": false
                 },
-
+                  {
+                    "id": "ypiapp",
+                    "title": "YPI App", 
+                    "category": "HR Management", 
+                    "image": "assets/YPI App - Human Resource Management.png", 
+                    "link": "#", 
+                    "color_class": "bg-blue-600/60",
+                    "isHidden": false
+                },
+                 {
+                    "id": "eljohn",
+                    "title": "El John Media App", 
+                    "category": "Digital Media Platform", 
+                    "image": "assets/El John Media App - Digital Media Platform.png", 
+                    "link": "#", 
+                    "color_class": "bg-red-600/60",
+                    "isHidden": false
+                },
+    {
+                    "id": "sadana",
+                    "title": "Sadana App", 
+                    "category": "Pawn and Accounting Information System", 
+                    "image": "assets/Sadana App - Pawn and Accounting Information System.png", 
+                    "link": "#", 
+                    "color_class": "bg-amber-600/60",
+                    "isHidden": false
+                },//
                   {
                     "id": "flipglobe",
                     "title": "Flip Globe", 
-                    "category": "Payment Platform ", 
+                    "category": "Cross-border Payment Platform ", 
                     "image": "assets/Flip Globe - Cross-border Payment Platform.png", 
                     "link": "#", 
                     "color_class": "bg-sky-600/60",
-                    "isHidden": false
+                    "isHidden": true
                 },
 
                     {
@@ -159,7 +187,7 @@ const ALL_DATA = {
                     "image": "assets/Lippo Sales - Sales Management System.png", 
                     "link": "#", 
                     "color_class": "bg-blue-600/60",
-                    "isHidden": false
+                    "isHidden": true
                 },
 
 
@@ -170,7 +198,7 @@ const ALL_DATA = {
                     "image": "assets/Hevy Beauty Care - Point of Sale.png", 
                     "link": "#", 
                     "color_class": "bg-pink-600/60",
-                    "isHidden": false
+                    "isHidden": true
                 },
 
 
@@ -184,40 +212,33 @@ const ALL_DATA = {
                     "isHidden": true
                 },
 
-                  {
-                    "id": "siupin",
-                    "title": "Siupin", 
-                    "category": "E-Catalogue Platform", 
-                    "image": "assets/Siupin - E-catalogue Platform.png", 
-                    "link": "#", 
-                    "color_class": "bg-yellow-600/60",
-                    "isHidden": true
-                },
 
                   {
-                    "id": "sadana",
-                    "title": "Sadana App", 
-                    "category": "Pawn & Finance", 
-                    "image": "assets/Sadana App - Pawn and Accounting Information System.png", 
+                    "id": "BMI Masjid",
+                    "title": "BMI Masjid", 
+                    "category": "Zakat App", 
+                    "image": "assets/BMI Masjid - Zakat App.png", 
                     "link": "#", 
-                    "color_class": "bg-amber-600/60",
-                    "isHidden": true
-                },
-
-                  {
-                    "id": "eljohn",
-                    "title": "El John Media App", 
-                    "category": "Digital Media Platform", 
-                    "image": "assets/El John Media App - Digital Media Platform.png", 
-                    "link": "#", 
-                    "color_class": "bg-red-600/60",
+                    "color_class": "bg-purple-600/60",
                     "isHidden": true
                 },
 
                    {
+                    "id": "belanja",
+                    "title": "Belanja Smart", 
+                    "category": "Grocery App", 
+                    "image": "assets/Belanja Smart - Grocery App.png", 
+                    "link": "#", 
+                    "color_class": "bg-green-600/60",
+                    "isHidden": true
+                },
+
+                 
+
+                   {
                     "id": "surau",
                     "title": "Surau", 
-                    "category": "Islamic App", 
+                    "category": "Islamic Worship App", 
                     "image": "assets/Surau - Islamic Worship App.png", 
                     "link": "#", 
                     "color_class": "bg-emerald-600/60",
@@ -227,7 +248,7 @@ const ALL_DATA = {
                    {
                     "id": "octoapp",
                     "title": "Octo App", 
-                    "category": "Sports Booking", 
+                    "category": "Sports Booking App", 
                     "image": "assets/Octo App - Sports Booking App.png", 
                     "link": "#", 
                     "color_class": "bg-blue-600/60",
@@ -246,7 +267,7 @@ const ALL_DATA = {
                   {
                     "id": "difis",
                     "title": "Difis", 
-                    "category": "Finance & Student System", 
+                    "category": " Financial Information System", 
                     "image": "assets/Difis - Financial Information System.png", 
                     "link": "#", 
                     "color_class": "bg-violet-600/60",
@@ -255,28 +276,20 @@ const ALL_DATA = {
 
                   {
                     "id": "ypifinance",
-                    "title": "YPI Finance Management System", 
-                    "category": "Finance System", 
+                    "title": "YPI", 
+                    "category": " Finance Management System", 
                     "image": "assets/YPI - Finance Management System.png", 
                     "link": "#", 
                     "color_class": "bg-slate-600/60",
                     "isHidden": true
                 },
 
-                  {
-                    "id": "ypiapp",
-                    "title": "YPI App", 
-                    "category": "HR Management", 
-                    "image": "assets/YPI App - Human Resource Management.png", 
-                    "link": "#", 
-                    "color_class": "bg-blue-600/60",
-                    "isHidden": true
-                },
+                
 
                 {
                     "id": "maureno",
-                    "title": "Maureno Website", 
-                    "category": "Web App", 
+                    "title": "Maureno", 
+                    "category": "Furniture Landing Web", 
                     "image": "assets/Maureno - Furniture Landing Web.png", 
                     "link": "#", 
                     "color_class": "bg-amber-800/60", 
@@ -285,21 +298,13 @@ const ALL_DATA = {
                 {
                     "id": "kokkino",
                     "title": "Kokkino Internusa", 
-                    "category": "HR Management System", 
+                    "category": "Stock Management System", 
                     "image": "assets/Hotways App - Stock Management System.png", 
                     "link": "#", 
                     "color_class": "bg-red-600/60", 
                     "isHidden": true
                 },
-                {
-                    "id": "flipdeals",
-                    "title": "Flip Deals", 
-                    "category": "Digital Payment Aggregator", 
-                    "image": "assets/Flip Deals - Online Cashback Service.png", 
-                    "link": "#", 
-                    "color_class": "bg-yellow-600/60", 
-                    "isHidden": true
-                }
+               
             ]
         },
 
@@ -1584,9 +1589,7 @@ function showProjectDetailModal(projectId) {
                         <div class="absolute inset-0 bg-gradient-to-t from-dark-card to-transparent rounded-t-2xl"></div>
                         <div class="absolute bottom-4 left-4 right-4">
                             <div class="flex flex-wrap items-center gap-2 ${isMobile ? 'mb-2' : 'mb-3'}">
-                                <span class="px-3 py-1 rounded-full text-sm font-medium ${project.color_class} text-white">
-                                    ${project.category}
-                                </span>
+                              
                                
                             </div>
                             <h1 class="${isMobile ? 'text-2xl' : 'text-3xl md:text-4xl'} font-bold text-white ${isMobile ? 'mb-1' : 'mb-2'}">${project.title}</h1>
