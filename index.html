@@ -12,7 +12,6 @@
         <style>
 
 
-/* Single line ellipsis for project titles */
 .project-title {
     white-space: nowrap;
     overflow: hidden;
@@ -21,7 +20,6 @@
     width: 100%;
 }
 
-/* Untuk work grid dan work detail grid */
 #work-grid .project-item h3,
 #work-detail-grid .project-detail-card h3 {
     white-space: nowrap;
@@ -31,20 +29,17 @@
     display: block;
 }
 
-/* Pastikan container tidak memaksa wrap */
 .project-item,
 .project-detail-card {
-    min-width: 0; /* Important for ellipsis to work */
+    min-width: 0;
 }
 
-/* Untuk judul yang panjang di modal */
 .modal-overlay h1 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-            /* Footer Contact Links Hover Effects */
 #footer a {
     transition: all 0.3s ease;
 }
@@ -53,7 +48,6 @@
     color: #1dd1a1;
 }
 
-/* Mobile touch improvements */
 @media (max-width: 768px) {
     #footer .space-y-4 > div {
         padding: 0.5rem 0;
@@ -65,7 +59,6 @@
     }
 }
 
-            /* Work Detail Grid Layout */
 #work-detail-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -176,7 +169,7 @@
   transition: all 0.4s ease;
 }
 #mobile-menu.show {
-  max-height: 100vh; /* tinggi penuh layar */
+  max-height: 100vh;
   opacity: 1;
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -268,7 +261,7 @@
             }
 
            .marquee--8 {
-    --marquee-item-width: 250px; /* atur jarak antar logo */
+    --marquee-item-width: 250px;
     --marquee-item-height: 100px;
     --marquee-duration: 60s;
     --marquee-items: 8;
@@ -359,7 +352,6 @@
                 transform: scale(1.02);
             }
 
-            /* Modal Styles */
     .modal-overlay {
         z-index: 1000;
     }
@@ -383,7 +375,6 @@
         border-radius: 3px;
     }
 
-    /* Smooth transitions */
     .modal-overlay, .bg-dark-card {
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -415,7 +406,6 @@
                 animation: slide 40s linear infinite;
             }
             
-            /* Trusted By Section Tweaks */
             #trusted-by {
                 padding-top: 2rem;
                 padding-bottom: 3rem;
@@ -433,10 +423,9 @@
                 gap: 6rem;
             }
             #trusted-by-marquee .marquee__item {
-    margin-inline: 6rem; /* atur jaraknya di sini */
+    margin-inline: 6rem;
 }
 
-                    /* Responsive Design Improvements */
             @media (max-width: 640px) {
                 #navbar {
                     max-width: 95%;
@@ -520,7 +509,6 @@
                 }
             }
 
-            /* Mobile Menu Improvements */
             @media (max-width: 768px) {
                 #mobile-menu {
                     padding-left: 1.5rem;
@@ -537,7 +525,6 @@
                 }
             }
 
-            /* Modal Responsive Improvements */
             @media (max-width: 640px) {
                 .modal-overlay {
                     padding: 1rem;
@@ -597,7 +584,6 @@
                 }
             }
 
-            /* Touch Device Improvements */
             @media (hover: none) {
                 .service-card:hover {
                     transform: none;
@@ -615,7 +601,6 @@
                 }
             }
 
-            /* High DPI Screens */
             @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
                 .service-card img,
                 .project-item img,
@@ -640,7 +625,6 @@
                 }
             }
 
-            /* Safe Area Insets for Notch Phones */
             @supports(padding: max(0px)) {
                 .hero-gradient,
                 #services,
@@ -664,7 +648,6 @@
                 }
             }
 
-            /* Testimonial Styles */
             .testimonial-card {
                 background: rgba(255, 255, 255, 0.05);
                 border-radius: 1rem;
@@ -720,7 +703,6 @@
                 background: linear-gradient(to left, var(--dark-bg), transparent);
             }
 
-            /* Animasi untuk card work detail */
 .project-detail-card {
     opacity: 0;
     transform: translateY(30px);
@@ -732,7 +714,6 @@
     transform: translateY(0);
 }
 
-/* Animasi stagger untuk delay bertahap */
 .project-detail-card:nth-child(1) { transition-delay: 0.1s; }
 .project-detail-card:nth-child(2) { transition-delay: 0.2s; }
 .project-detail-card:nth-child(3) { transition-delay: 0.3s; }
@@ -748,7 +729,7 @@
 .project-detail-card:nth-child(13) { transition-delay: 1.3s; }
 .project-detail-card:nth-child(14) { transition-delay: 1.4s; }
 .project-detail-card:nth-child(15) { transition-delay: 1.5s; }
-        </style>
+</style>
         
         <script>
             tailwind.config = {
@@ -786,7 +767,6 @@
 
     <body class="bg-gradient-to-b from-slate-900 to-black text-white font-inter scroll-smooth">
         
-        <!-- Main Navigation -->
         <nav id="navbar" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl px-3 sm:px-5 h-18 py-3 bg-black/20 backdrop-blur-lg rounded-[32px] border border-white/20 shadow-md opacity-0 -translate-y-20 transition-all duration-700 ease-out ">
             <div class="relative flex items-center justify-between">
                 <div class="flex items-center space-x-2">
@@ -795,7 +775,6 @@
                 <div id="navbar-links" class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center space-x-10 text-sm font-medium text-white "></div>
                 <div id="navbar-cta-desktop" class="hidden md:flex items-center"></div>
                 
-                <!-- Mobile Hamburger Button -->
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-white hover:text-teal-400 focus:outline-none">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -805,14 +784,12 @@
                 </div>
             </div>
 
-            <!-- Mobile Menu -->
             <div id="mobile-menu" 
                 class="md:hidden max-h-0 opacity-0 scale-y-95 overflow-hidden 
                         transition-all duration-300 ease-in-out origin-top">
             </div>
         </nav>
 
-        <!-- Hero Section -->
         <section id="home" class="hero-gradient min-h-[75vh] flex items-center justify-center px-6 py-20 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-b from-lawut via-lawut-dark to-dark-bg"></div>
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 mt-[10px]">
@@ -822,7 +799,6 @@
             </div>
         </section> 
 
-        <!-- Trusted By Section -->
         <section id="trusted-by" class="px-6 py-20 bg-dark-bg">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <div class="inline-flex items-center gap-2 px-4 py-2 mb-8">
@@ -832,7 +808,6 @@
             </div>
         </section>
 
-        <!-- Services Section -->
         <section id="services" class="px-6 py-[98px] bg-dark-bg">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
                 <div class="text-center mb-16">
@@ -846,7 +821,6 @@
             </div>
         </section>
 
-        <!-- About Section -->
         <section id="about" class="py-[20px] bg-dark-bg">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 ">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center text-center lg:text-left">
@@ -867,7 +841,6 @@
             </div>
         </section>
 
-        <!-- Work Section -->
         <section id="work" class="py-[90px] bg-dark-bg scroll-mt-32 md:scroll-mt-40 flex flex-col items-center text-center">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center mb-10">
@@ -877,12 +850,10 @@
                         <span id="work-tag" class="text-sm font-medium"></span>
                     </div>
 
-                    <!-- Title -->
                     <h2 id="work-title"
                         class="text-5xl font-semibold font-inter mb-2 bg-gradient-to-b from-white to-lawut via-white text-transparent bg-clip-text box-border size-50 border-1 p-2 scroll-reveal">
                     </h2>
 
-                    <!-- Description -->
                     <p id="work-description"
                     class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mt-4 mb-10 scroll-reveal text-center">
                     </p>
@@ -892,7 +863,6 @@
                     class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-20 justify-items-center">
                 </div>
 
-                <!-- Button -->
                 <div class="mt-6 scroll-reveal flex justify-center items-center gap-4 mb-10 py-5 ">
                     <button id="toggleProjectsBtn"
                             class="px-6 py-2 rounded-full border border-teal-500 text-teal-400 hover:bg-cyan-500 hover:text-white transition duration-300">
@@ -902,11 +872,9 @@
             </div>
         </section>
 
-            <!-- Work Detail Section (Hidden by default) -->
-       <!-- Work Detail Section (Hidden by default) -->
+           
 <section id="work-detail" style="display: none;" class="py-20 bg-dark-bg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Header -->
         <div class="text-center mb-16">
             <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-teal-500 text-teal-400 bg-teal-500/10 w-max mx-auto mb-4">
                 <span class="w-2.5 h-2.5 bg-teal-400 rounded-full"></span>
@@ -917,12 +885,9 @@
             </h2>
         </div>
 
-        <!-- Projects Grid -->
            <div id="work-detail-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            <!-- Projects will be loaded here by JavaScript -->
         </div>
     </div>
-     <!-- Back Button -->
         <div class="text-center">
             <button id="backToWorkBtn" 
                     class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-teal-500 text-teal-400 hover:bg-teal-500 hover:text-white transition-all duration-300 group">
@@ -930,7 +895,6 @@
             </button>
         </div>
 </section>
-        <!-- Testimonials Section -->
         <section id="testi" class="bg-dark-bg text-white py-[84px] px-6 overflow-hidden relative">
             <div class="max-w-7xl mx-auto mb-18">
                 <div class="text-center mb-12">
@@ -948,7 +912,6 @@
             </div>
         </section>
 
-        <!-- CTA Section -->
         <section id="cta" class="bg-dark-bg py-20">
             <div class="bg-gradient-to-b from-[#062b2d] to-[#081013] rounded-3xl mx-1 sm:mx-6 lg:mx-20 text-center py-12 sm:py-16 px-4 sm:px-8 lg:px-12 scroll-reveal">
                 <div class="mb-6 flex justify-center">
@@ -959,7 +922,6 @@
             </div>
         </section>
 
-        <!-- Footer Section -->
         <footer id="footer" class="bg-dark-bg text-gray-400 px-6 py-20">
             <div class="max-w-7xl mx-auto">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 mb-6">
@@ -982,9 +944,6 @@
             </div>
         </footer>
 
-        
-
-        <!-- Project Detail Pages Container -->
         <div id="navbar-detail"></div>
         <div id="homepage"></div>
         <div id="about"></div>
