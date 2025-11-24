@@ -1,6 +1,4 @@
-// All JSON Data
 const ALL_DATA = {
-    // Main sections data
     "sections": {
         "navbar": {
             "logo": "assets/hotamalogo.png",
@@ -49,9 +47,6 @@ const ALL_DATA = {
                 {"src": "assets/munzalan_logo.png", "alt": "flip", "size":"50px"},
                 {"src": "assets/maureno_logo.png", "alt": "flip" , "size":"20px"},
                 {"src": "assets/Logo Kementan.png", "alt": "kementan" , "size":"40px"},
-
-
-                
             ]
         },
 
@@ -355,7 +350,7 @@ const ALL_DATA = {
           "contact": {
         "location": "Sungai Raya Dalam Street, Golden City Complex, No D3. Pontianak, West Borneo 78391",
         "phone": "(+62) 811 4867 735",
-        "email": "hi@hotama.co.id" // TAMBAH BARIS INI
+        "email": "hi@hotama.co.id" 
     },
             "quick_links": [
                 {"text": "Our Services", "href": "#services"},
@@ -366,7 +361,6 @@ const ALL_DATA = {
         }
     },
 
-    // Projects detail data
     "projects_detail": {
         "BMI Masjid": {
             "title": "BMI Masjid",
@@ -773,7 +767,6 @@ const ALL_DATA = {
     }
 };
 
-// Main initialization
 document.addEventListener('DOMContentLoaded', function() {
     try {
         const urlParams = new URLSearchParams(window.location.search);
@@ -792,7 +785,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Homepage loader
 function loadHomepage() {
     try {
         const sections = ALL_DATA.sections;
@@ -818,7 +810,6 @@ function loadHomepage() {
     }
 }
 
-// Project detail loader
 function loadProjectDetail(projectName) {
     try {
         const projectKey = `${projectName}_sections`;
@@ -836,7 +827,6 @@ function loadProjectDetail(projectName) {
     }
 }
 
-// Work detail loader  
 function loadWorkDetail() {
     try {
         console.log('Loa    ding work detail page...');
@@ -846,10 +836,6 @@ function loadWorkDetail() {
         showError('Failed to load work details');
     }
 }
-
-// ====================================================================
-// RENDER FUNCTIONS
-// ====================================================================
 
 function renderNavbar(navData) {
     try {
@@ -934,13 +920,11 @@ function renderHero(heroData) {
 
         tagContainer.textContent = trustedByData.tag;
 
-        // hanya duplikasi 2x
         const allLogos = [
             ...trustedByData.logos,
             ...trustedByData.logos
         ];
 
-        // 🔥 FIX PALING PENTING
         container.style.setProperty('--marquee-items', allLogos.length);
 
         container.innerHTML = allLogos
@@ -1061,9 +1045,8 @@ function renderFooter(footerData) {
             <a href="${link.href}" class="block text-gray-300 hover:text-teal-400 transition-colors duration-300 text-sm">${link.text}</a>
         `).join('');
         
-        // Encode untuk URL yang aman
         const encodedLocation = encodeURIComponent(footerData.contact.location);
-        const encodedPhone = footerData.contact.phone.replace(/\D/g, ''); // Hanya angka
+        const encodedPhone = footerData.contact.phone.replace(/\D/g, ''); 
         const encodedEmail = encodeURIComponent(footerData.contact.email);
         
         contactContainer.innerHTML = `
@@ -1110,7 +1093,6 @@ function renderFooter(footerData) {
     }
 }
 
-// Animasi transisi smooth ke halaman detail portofolio
 function showWorkDetail(allProjects) {
   try {
     const mainWorkSection = document.getElementById('work');
@@ -1119,13 +1101,11 @@ function showWorkDetail(allProjects) {
 
     if (!mainWorkSection || !workDetailSection || !workDetailGrid) return;
 
-    // Fade out section utama
     mainWorkSection.classList.add('opacity-0', 'translate-y-4', 'transition-all', 'duration-500');
     setTimeout(() => {
       mainWorkSection.classList.add('hidden');
       mainWorkSection.classList.remove('opacity-0', 'translate-y-4');
 
-      // Fade in section detail
       workDetailSection.classList.remove('hidden');
       workDetailSection.classList.add('opacity-0', 'translate-y-4');
       requestAnimationFrame(() => {
@@ -1133,7 +1113,6 @@ function showWorkDetail(allProjects) {
         workDetailSection.classList.remove('opacity-0', 'translate-y-4');
       });
 
-      // Render semua project
       workDetailGrid.innerHTML = allProjects.map(project => {
         const projectDetail = ALL_DATA.projects_detail[project.id];
         return `
@@ -1153,7 +1132,6 @@ function showWorkDetail(allProjects) {
         `;
       }).join('');
 
-      // Klik card → buka modal
       document.querySelectorAll('.project-detail-card').forEach(card => {
         card.addEventListener('click', () => {
           const projectId = card.getAttribute('data-project-id');
@@ -1162,12 +1140,10 @@ function showWorkDetail(allProjects) {
       });
 
       
-      // Scroll smooth ke section
       setTimeout(() => {
         workDetailSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 300);
 
-      // Event tombol kembali
       const backBtn = document.getElementById('backToWorkBtn');
       if (backBtn) {
         backBtn.addEventListener('click', () => backToMainWork());
@@ -1192,12 +1168,10 @@ function backToMainWork() {
             card.classList.remove('show');
         });
 
-        // Tunggu sebentar sebelum menyembunyikan section (untuk transisi yang smooth)
         setTimeout(() => {
             workDetailSection.style.display = 'none';
             mainWorkSection.style.display = 'flex';
             
-            // Scroll kembali ke section utama
             setTimeout(() => {
                 mainWorkSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 console.log('Back to main work section');
@@ -1210,7 +1184,6 @@ function backToMainWork() {
 }
 
 
-// Update pada fungsi renderWork untuk menyamakan ukuran dengan service card
 
 
 function renderWork(workData) {
@@ -1237,7 +1210,6 @@ function renderWork(workData) {
 container.className =
 "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10";
 
-        // Show only non-hidden projects
         const visibleProjects = workData.projects.filter(p => !p.isHidden);
         console.log('Visible projects:', visibleProjects);
         
@@ -1277,7 +1249,6 @@ container.className =
             </div>
         `).join('');
 
-        // Update See More button
         if (seeMoreBtn) {
             seeMoreBtn.textContent = "See More";
             console.log('See More button found, adding event listener');
@@ -1294,7 +1265,6 @@ container.className =
             console.error('See More button not found');
         }
 
-        // Add click handlers for project items
         setTimeout(() => {
             const projectItems = document.querySelectorAll('.project-item');
             console.log('Project items found:', projectItems.length);
@@ -1313,7 +1283,6 @@ container.className =
     }
 }
 
-// Perbaiki fungsi showProjectDetailModal
 function showProjectDetailModal(projectId) {
     try {
         console.log('Opening modal for project:', projectId);
@@ -1323,7 +1292,6 @@ function showProjectDetailModal(projectId) {
             return;
         }
 
-        // Hapus modal yang sudah ada
         const existingModal = document.querySelector('.modal-overlay');
         if (existingModal) {
             document.body.removeChild(existingModal);
@@ -1407,13 +1375,11 @@ function showProjectDetailModal(projectId) {
         const modal = document.querySelector('.modal-overlay');
         const modalContent = modal.querySelector('.bg-dark-card');
 
-        // Animate in
         setTimeout(() => {
             modal.classList.add('opacity-100');
             modalContent.classList.remove('scale-95');
         }, 10);
 
-        // Close modal function
         const closeModal = () => {
             modal.classList.remove('opacity-100');
             modalContent.classList.add('scale-95');
@@ -1424,7 +1390,6 @@ function showProjectDetailModal(projectId) {
             }, 300);
         };
 
-        // Event listeners untuk closing modal
         modal.querySelectorAll('.close-modal').forEach(btn => {
             btn.addEventListener('click', closeModal);
         });
@@ -1433,13 +1398,11 @@ function showProjectDetailModal(projectId) {
             if (e.target === modal) closeModal();
         });
 
-        // Close on Escape key
         const escHandler = (e) => {
             if (e.key === 'Escape') closeModal();
         };
         document.addEventListener('keydown', escHandler);
 
-        // Cleanup event listener ketika modal ditutup
         modal.addEventListener('transitionend', function handler() {
             if (!modal.parentNode) {
                 document.removeEventListener('keydown', escHandler);
@@ -1452,10 +1415,8 @@ function showProjectDetailModal(projectId) {
     }
 }
 
-// Pastikan DOM sudah fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     try {
-        // Reset semua event listeners yang mungkin bertumpuk
         document.body.replaceWith(document.body.cloneNode(true));
         
         const urlParams = new URLSearchParams(window.location.search);
@@ -1492,13 +1453,11 @@ function showWorkDetail(allProjects) {
             return;
         }
 
-        // Sembunyikan section utama dan tampilkan detail
         mainWorkSection.style.display = 'none';
         workDetailSection.style.display = 'block';
         
         console.log('Display toggled - main hidden, detail shown');
 
-        // Render semua project cards (masih tersembunyi)
        workDetailGrid.innerHTML = allProjects.map(project => {
             return `
             <div class="block group transition-all duration-300 w-full max-w-full project-detail-card cursor-pointer" 
@@ -1543,19 +1502,16 @@ function showWorkDetail(allProjects) {
 
         console.log('Work detail grid rendered with', allProjects.length, 'projects');
 
-        // Trigger animasi fade in setelah render
         setTimeout(() => {
             const detailCards = document.querySelectorAll('.project-detail-card');
             console.log('Detail cards found:', detailCards.length);
             
-            // Tambahkan class show untuk memicu animasi satu per satu
             detailCards.forEach((card, index) => {
                 setTimeout(() => {
                     card.classList.add('show');
-                }, index * 100); // Delay 100ms antara setiap card
+                }, index * 100); 
             });
 
-            // Tambahkan event listener untuk klik card
             detailCards.forEach(card => {
                 card.addEventListener('click', () => {
                     const projectId = card.getAttribute('data-project-id');
@@ -1565,7 +1521,6 @@ function showWorkDetail(allProjects) {
             });
         }, 100);
 
-        // Scroll ke section detail
         setTimeout(() => {
             workDetailSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             console.log('Scrolled to work detail section');
@@ -1649,26 +1604,22 @@ function showProjectDetailModal(projectId) {
             </div>
         `;
 
-        // Remove existing modal if any
         const existingModal = document.querySelector('.modal-overlay');
         if (existingModal) {
             existingModal.remove();
         }
 
-        // Add modal to body
         document.body.insertAdjacentHTML('beforeend', modalHTML);
         
         const modal = document.querySelector('.modal-overlay');
         const modalContent = modal.querySelector('.bg-dark-bg');
 
-        // Animate in
         setTimeout(() => {
             modal.classList.add('opacity-100');
             modalContent.classList.add('scale-100');
             modalContent.classList.remove('scale-95');
         }, 10);
 
-        // Close modal function
         const closeModal = () => {
             modal.classList.remove('opacity-100');
             modalContent.classList.remove('scale-100');
@@ -1679,28 +1630,23 @@ function showProjectDetailModal(projectId) {
                     modal.remove();
                 }
                 
-                // Re-enable body scrolling
                 document.body.style.overflow = 'auto';
                 document.body.style.pointerEvents = 'auto';
             }, 300);
         };
 
-        // Disable body scrolling when modal is open
         document.body.style.overflow = 'hidden';
         
-        // Event listeners for closing modal
         modal.querySelectorAll('.close-modal').forEach(btn => {
             btn.addEventListener('click', closeModal);
         });
 
-        // Close when clicking on overlay background
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 closeModal();
             }
         });
 
-        // Close on Escape key
         const escHandler = (e) => {
             if (e.key === 'Escape') {
                 closeModal();
@@ -1709,7 +1655,6 @@ function showProjectDetailModal(projectId) {
         };
         document.addEventListener('keydown', escHandler);
 
-        // Cleanup event listener when modal is closed
         modal.addEventListener('transitionend', function handler(e) {
             if (e.propertyName === 'opacity' && !modal.classList.contains('opacity-100')) {
                 document.removeEventListener('keydown', escHandler);
@@ -1720,7 +1665,6 @@ function showProjectDetailModal(projectId) {
     } catch (error) {
         console.error('Project detail modal error:', error);
         
-        // Ensure body scrolling is re-enabled even if there's an error
         document.body.style.overflow = 'auto';
         document.body.style.pointerEvents = 'auto';
     }
@@ -1728,16 +1672,11 @@ function showProjectDetailModal(projectId) {
 
 function renderSimpleSections(data, projectName) {
     try {
-        // Implementation for simple sections rendering
         console.log('Rendering simple sections for:', projectName);
     } catch (error) {
         console.error('Simple sections rendering error:', error);
     }
 }
-
-// ====================================================================
-// INITIALIZATION FUNCTIONS
-// ====================================================================
 
 function initNavbar() {
     try {
@@ -1748,7 +1687,6 @@ function initNavbar() {
         const mainWorkSection = document.getElementById("work");
         const workDetailSection = document.getElementById("work-detail");
 
-        // Toggle menu mobile
         if (mobileMenuBtn && mobileMenu) {
             mobileMenuBtn.addEventListener("click", () => {
                 mobileMenu.classList.toggle("show");
@@ -1756,7 +1694,6 @@ function initNavbar() {
             });
         }
 
-        // Smooth Scroll Adaptif + FIX scroll to hidden section
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener("click", function (e) {
                 const targetId = this.getAttribute("href").substring(1);
@@ -1765,11 +1702,9 @@ function initNavbar() {
 
                 e.preventDefault();
 
-          // FIX: Jika sedang berada di See More, scroll ke work-detail, bukan switch tampilan
 if (targetId === "work") {
     if (mainWorkSection && workDetailSection) {
 
-        // Jika yang tampil adalah See More
         if (workDetailSection.style.display === "block") {
             setTimeout(() => {
                 workDetailSection.scrollIntoView({
@@ -1777,13 +1712,12 @@ if (targetId === "work") {
                     block: "start"
                 });
             }, 50);
-            return; // Hentikan behavior scroll normal
+            return;
         }
     }
 }
 
 
-                // Scroll normal (jika tidak sedang hidden)
                 const navbarRect = navbar?.getBoundingClientRect();
                 const isNavbarVisible = navbarRect && navbarRect.top <= 0;
                 const navbarHeight = isNavbarVisible ? (navbar?.offsetHeight || 0) : 0;
@@ -1794,7 +1728,6 @@ if (targetId === "work") {
                     behavior: "smooth",
                 });
 
-                // Tutup mobile menu saat klik
                 if (window.innerWidth < 768 && mobileMenu.classList.contains("show")) {
                     mobileMenu.classList.remove("show");
                     document.body.classList.remove("overflow-hidden");
@@ -1802,7 +1735,6 @@ if (targetId === "work") {
             });
         });
 
-        // Navbar animasi muncul saat load
         if (navbar) {
             navbar.classList.remove("opacity-0", "-translate-y-20");
             navbar.classList.add("opacity-100", "translate-y-0");
@@ -1814,7 +1746,6 @@ if (targetId === "work") {
 
 function initMainScript() {
     try {
-        // Animasi muncul saat di-scroll
         const serviceCards = document.querySelectorAll('.service-card');
         const serviceCardObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1829,7 +1760,6 @@ function initMainScript() {
 
         serviceCards.forEach(card => serviceCardObserver.observe(card));
 
-        // Efek hover animasi
         serviceCards.forEach(card => {
             const img = card.querySelector('img');
             const title = card.querySelector('h3');
@@ -1875,7 +1805,6 @@ function initMainScript() {
             });
         });
 
-        // General scroll reveal
         const scrollRevealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1888,7 +1817,6 @@ function initMainScript() {
             scrollRevealObserver.observe(el);
         });
 
-        // Testimonial marquee pause saat hover
         const testimonialTrack = document.querySelector('.testimonial-track');
         if (testimonialTrack) {
             testimonialTrack.addEventListener('mouseenter', () => {
@@ -1899,12 +1827,10 @@ function initMainScript() {
             });
         }
 
-        // Back button functionality
             const backToWorkBtn = document.getElementById('backToWorkBtn');
         if (backToWorkBtn) {
             console.log('Back button found, adding event listener');
             
-            // Remove existing event listeners
             backToWorkBtn.replaceWith(backToWorkBtn.cloneNode(true));
             const newBackBtn = document.getElementById('backToWorkBtn');
             
@@ -1915,7 +1841,7 @@ function initMainScript() {
                 
                 if (mainWorkSection && workDetailSection) {
                     workDetailSection.style.display = 'none';
-                    mainWorkSection.style.display = 'flex'; // atau 'block' sesuai kebutuhan
+                    mainWorkSection.style.display = 'flex'; 
                     mainWorkSection.scrollIntoView({ behavior: 'smooth' });
                     console.log('Back to main work section');
                 }
@@ -1928,7 +1854,6 @@ function initMainScript() {
         console.error('Main script initialization error:', error);
     }
 }
-// URL scroll parameter handler
 document.addEventListener("DOMContentLoaded", () => {
     try {
         const params = new URLSearchParams(window.location.search);
@@ -1971,5 +1896,6 @@ function showError(message) {
         console.error('Error display error:', error);
     }
 }
+
 
 
