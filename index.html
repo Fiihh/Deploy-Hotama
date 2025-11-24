@@ -11,6 +11,60 @@
         
         <style>
 
+
+/* Single line ellipsis for project titles */
+.project-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    width: 100%;
+}
+
+/* Untuk work grid dan work detail grid */
+#work-grid .project-item h3,
+#work-detail-grid .project-detail-card h3 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    display: block;
+}
+
+/* Pastikan container tidak memaksa wrap */
+.project-item,
+.project-detail-card {
+    min-width: 0; /* Important for ellipsis to work */
+}
+
+/* Untuk judul yang panjang di modal */
+.modal-overlay h1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+            /* Footer Contact Links Hover Effects */
+#footer a {
+    transition: all 0.3s ease;
+}
+
+#footer .group:hover .text-teal-400 {
+    color: #1dd1a1;
+}
+
+/* Mobile touch improvements */
+@media (max-width: 768px) {
+    #footer .space-y-4 > div {
+        padding: 0.5rem 0;
+    }
+    
+    #footer a {
+        display: block;
+        padding: 0.25rem 0;
+    }
+}
+
             /* Work Detail Grid Layout */
 #work-detail-grid {
     display: grid;
@@ -761,7 +815,7 @@
         <!-- Hero Section -->
         <section id="home" class="hero-gradient min-h-[75vh] flex items-center justify-center px-6 py-20 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-b from-lawut via-lawut-dark to-dark-bg"></div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 mt-[10px]">
                 <h2 id="hero-title" class="text-6xl font-semibold font-inter mb-2 bg-gradient-to-b from-white to-lawut via-white text-transparent bg-clip-text box-border size-50 border-1 p-2 scroll-reveal"></h2>
                 <p id="hero-subtitle" class="text-2xl text-gray-500 md:text-xl mb-10 font-inter max-w-4xl scroll-reveal"></p>
                 <div id="hero-cta-container" class="flex flex-wrap gap-4 justify-center items-center scroll-reveal"></div>
@@ -927,6 +981,8 @@
                 </div>
             </div>
         </footer>
+
+        
 
         <!-- Project Detail Pages Container -->
         <div id="navbar-detail"></div>
