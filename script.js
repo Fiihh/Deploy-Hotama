@@ -8,11 +8,11 @@ const ALL_DATA = {
                 { "text": "Our Services", "href": "#services" },
                 { "text": "About Us", "href": "#about" },
                 { "text": "Project", "href": "#work" },
-                { "text": "Testimoni", "href": "#testi" }
+                { "text": "Testimonial", "href": "#testi" }
             ],
             "cta": {
                 "text": "Let's Talk",
-                "href": "https://www.linkedin.com/company/putrahotama"
+                "href": "https://wa.me/628114867735?text="
             }
         },
         
@@ -21,17 +21,17 @@ const ALL_DATA = {
                 { "text": "Our Services", "href": "#services" },
                 { "text": "About Us", "href": "#about" },
                 { "text": "Project", "href": "#work" },
-                { "text": "Testimoni", "href": "#testi" }
+                { "text": "Testimonial", "href": "#testi" }
             ]
         },
 
         "hero": {
             "id": "home",
             "title": "Transform Your Digital Presence",
-            "subtitle": "We help ambitious brands grow and scale through world-class design, smart marketing strategies, and cutting-edge technology—tailored to make real impact.",
+            "subtitle": "We help ambitious brands grow and scale through world-class design, smart marketing strategies, and cutting-edge technology, tailored to make real impact.",
             "cta": { 
                 "text": "Let's Talk", 
-                "href": "https://www.linkedin.com/company/putrahotama/posts/?feedView=all" 
+                "href": "https://wa.me/628114867735?text=" 
             },
             "cta2": { 
                 "text": "View Our Work", 
@@ -48,6 +48,7 @@ const ALL_DATA = {
                 {"src": "assets/octo_logo.png", "alt": "pegasus", "size":"40px"},
                 {"src": "assets/munzalan_logo.png", "alt": "flip", "size":"50px"},
                 {"src": "assets/maureno_logo.png", "alt": "flip" , "size":"20px"},
+                {"src": "assets/Logo Kementan.png", "alt": "kementan" , "size":"40px"},
 
 
                 
@@ -66,7 +67,7 @@ const ALL_DATA = {
                     "alt": "web-desktop icon"
                 },
                 {
-                    "title": "Mobile Application", 
+                    "title": "Mobile App", 
                     "description": "Step into the mobile realm with our cutting-edge Android and iOS development.", 
                     "icon": "assets/mobile-app.png", 
                     "alt": "mobile icon"
@@ -114,7 +115,7 @@ const ALL_DATA = {
             "projects": [
                {
                     "id": "siupin",
-                    "title": "Siupin", 
+                    "title": "Siupin - Kementerian Pertanian Republik Indonesia ", 
                     "category": "E-Catalogue Platform", 
                     "image": "assets/Siupin - E-catalogue Platform.png", 
                     "link": "#", 
@@ -310,7 +311,7 @@ const ALL_DATA = {
 
         "testimonials": {
             "id": "testi",
-            "tag": "Testimoni",
+            "tag": "Testimonial",
             "title": "What client say about our service",
             "reviews": [
                 {
@@ -344,7 +345,7 @@ const ALL_DATA = {
             "headline_html": "Building smarter solutions for a better<br class=\"hidden md:block\" />future with <span class=\"text-teal-400\">Hotama</span>",
             "cta": {
                 "text": "Let's Talk", 
-                "href": "https://www.linkedin.com/company/putrahotama/posts/?feedView=all"
+                "href": "https://wa.me/628114867735?text="
             }
         },
 
@@ -360,7 +361,7 @@ const ALL_DATA = {
                 {"text": "Our Services", "href": "#services"},
                 {"text": "About Us", "href": "#about"},
                 {"text": "Project", "href": "#work"},
-                {"text": "Testimoni", "href": "#testi"}
+                {"text": "Testimonial", "href": "#testi"}
             ]
         }
     },
@@ -661,7 +662,7 @@ const ALL_DATA = {
   },
 
     "siupin": {
-    "title": "Siupin",
+    "title": "Siupin - Kementerian Pertanian Republik Indonesia",
     "subtitle": "E-Catalogue Platform",
     "description": "Platform katalog UPH untuk pemerintah daerah.",
     "full_description": "SIUPIN is a digital platform that provides comprehensive information about Processing Units (UPH - Unit Pengolahan Hasil) across different regions, allowing governments to manage and monitor data.",
@@ -1060,34 +1061,48 @@ function renderFooter(footerData) {
             <a href="${link.href}" class="block text-gray-300 hover:text-teal-400 transition-colors duration-300 text-sm">${link.text}</a>
         `).join('');
         
+        // Encode untuk URL yang aman
+        const encodedLocation = encodeURIComponent(footerData.contact.location);
+        const encodedPhone = footerData.contact.phone.replace(/\D/g, ''); // Hanya angka
+        const encodedEmail = encodeURIComponent(footerData.contact.email);
+        
         contactContainer.innerHTML = `
-            <div class="flex items-start space-x-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <!-- Location - Google Maps -->
+            <div class="flex items-start space-x-3 group cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5 group-hover:text-teal-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5s-3 1.343-3 3 1.343 3 3 3z"/>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 22s8-4.5 8-10a8 8 0 10-16 0c0 5.5 8 10 8 10z"/>
                 </svg>
-                <div class="text-sm text-gray-300 leading-relaxed">
+                <a href="https://www.google.com/maps/search/?api=1&query=${encodedLocation}" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="text-sm text-gray-300 leading-relaxed hover:text-teal-400 transition-colors duration-300">
                     ${footerData.contact.location}
-                </div>
+                </a>
             </div>
             
-            <div class="flex items-start space-x-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <!-- Phone - WhatsApp -->
+            <div class="flex items-start space-x-3 group cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5 group-hover:text-teal-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.66l1.52 4.07a1 1 0 01-.27 1.11l-2.3 2.3a11.042 11.042 0 005.2 5.2l2.3-2.3a1 1 0 011.11-.27l4.07 1.52a1 1 0 01.66.94V19a2 2 0 01-2 2h-1C9.373 21 3 14.627 3 7V5z"/>
                 </svg>
-                <div class="text-sm text-gray-300 leading-relaxed">
+                <a href="https://wa.me/${encodedPhone}" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="text-sm text-gray-300 leading-relaxed hover:text-teal-400 transition-colors duration-300">
                     ${footerData.contact.phone}
-                </div>
+                </a>
             </div>
 
-            <!-- TAMBAH BAGIAN EMAIL INI -->
-            <div class="flex items-start space-x-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <!-- Email - Mail Client -->
+            <div class="flex items-start space-x-3 group cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal-400 flex-shrink-0 mt-0.5 group-hover:text-teal-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
-                <div class="text-sm text-gray-300 leading-relaxed">
+                <a href="mailto:${footerData.contact.email}" 
+                   class="text-sm text-gray-300 leading-relaxed hover:text-teal-400 transition-colors duration-300">
                     ${footerData.contact.email}
-                </div>
+                </a>
             </div>
         `;
     } catch (error) {
@@ -1226,13 +1241,12 @@ container.className =
         const visibleProjects = workData.projects.filter(p => !p.isHidden);
         console.log('Visible projects:', visibleProjects);
         
-        container.innerHTML = visibleProjects.map(project => `
+       container.innerHTML = visibleProjects.map(project => `
             <div class="scroll-reveal block group transition-all duration-300 w-full project-item max-w-[420px] mx-auto cursor-pointer" 
                  data-project-id="${project.id}">
                 <div class="overflow-hidden rounded-2xl relative shadow-lg">
                   <img src="${project.image}" alt="${project.title}" 
      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-
 
                     <div class="absolute inset-0 ${project.color_class} hidden md:flex 
                                 items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
@@ -1256,8 +1270,8 @@ container.className =
                         </span>
                     </div>
                 </div>
-                <div class="text-left px-2 mt-4">
-                    <h3 class="text-lg sm:text-xl font-semibold mb-1 text-white">${project.title}</h3>
+                <div class="text-left px-2 mt-4 min-w-0"> <!-- Added min-w-0 for ellipsis -->
+                    <h3 class="text-lg sm:text-xl font-semibold mb-1 text-white project-title">${project.title}</h3>
                     <p class="text-gray-400 text-sm">${project.category}</p>
                 </div>
             </div>
@@ -1485,8 +1499,7 @@ function showWorkDetail(allProjects) {
         console.log('Display toggled - main hidden, detail shown');
 
         // Render semua project cards (masih tersembunyi)
-        workDetailGrid.innerHTML = allProjects.map(project => {
-            console.log('Rendering project:', project.id);
+       workDetailGrid.innerHTML = allProjects.map(project => {
             return `
             <div class="block group transition-all duration-300 w-full max-w-full project-detail-card cursor-pointer" 
                  data-project-id="${project.id}">
@@ -1520,8 +1533,8 @@ function showWorkDetail(allProjects) {
                     </div>
                 </div>
                 
-                <div class="text-left px-2 mt-4">
-                    <h3 class="text-lg font-semibold mb-1 text-white">${project.title}</h3>
+                <div class="text-left px-2 mt-4 min-w-0"> <!-- Added min-w-0 for ellipsis -->
+                    <h3 class="text-lg font-semibold mb-1 text-white project-title">${project.title}</h3>
                     <p class="text-gray-400 text-sm">${project.category}</p>
                 </div>
             </div>
@@ -1958,3 +1971,5 @@ function showError(message) {
         console.error('Error display error:', error);
     }
 }
+
+
